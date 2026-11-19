@@ -126,7 +126,7 @@ fn main {
     #|    </section>
     #|    <section class="updates shell" id="feature-title" aria-labelledby="updates-title">
     $|      <div class="updates-controls"><h2 id="updates-title">\{localized(locale, "最近动态", "Latest updates", "最新情報")}</h2>
-    $|        <fieldset><legend>\{localized(locale, "切换文章", "Select an article", "記事を切り替える")}</legend><label><input type="radio" name="updates-slide" value="1" checked> 1</label><label><input type="radio" name="updates-slide" value="2"> 2</label></fieldset>
+    $|        <fieldset><legend class="updates-visually-hidden">\{localized(locale, "切换文章", "Select an article", "記事を切り替える")}</legend><label><input type="radio" name="updates-slide" value="1" checked><span>01</span></label><label><input type="radio" name="updates-slide" value="2"><span>02</span></label></fieldset>
     $|        <button type="button" class="updates-toggle" hidden data-play="\{localized(locale, "播放轮播", "Play slideshow", "自動再生する")}" data-pause="\{localized(locale, "暂停轮播", "Pause slideshow", "自動再生を停止")}"></button>
     #|      </div>
     #|      <article class="feature" data-slide="1">
@@ -161,6 +161,10 @@ fn main {
     #|        toggle.hidden = false;
     #|      }
     #|    </script>
+    #|    <section class="shell seekmoon-cta" aria-labelledby="seekmoon-cta-title">
+    $|      <h2 id="seekmoon-cta-title">\{localized(locale, "开始使用 SeekMoon", "Get started with SeekMoon", "SeekMoon を始める")}</h2>
+    $|      <a href="https://seekmoon.moonbitlang.com/cloud">\{localized(locale, "打开云端工作台", "Open the cloud workspace", "クラウドワークスペースを開く")} <span aria-hidden="true">↗</span></a>
+    #|    </section>
     #|  </main>
   let ecosystem_page =
     #|  <main id="home">
@@ -214,8 +218,10 @@ fn main {
     #|    <section class="shell section" aria-labelledby="team">
     $|      <h2 id="team">\{localized(locale, "团队介绍", "Our team", "チーム紹介")}</h2>
     #|      <article class="founder-profile">
+    #|        <header>
     $|        <h3>\{localized(locale, "张宏波", "Hongbo Zhang", "張宏波（Hongbo Zhang）")}</h3>
     $|        <p class="founder-title">\{localized(locale, "月比特科技创始人", "Founder of Yuebite Technology", "月比特科技の創業者")}</p>
+    #|        </header>
     $|        <p>\{localized(locale, "张宏波发起 MoonBit 项目，并带领团队研发编程语言和开发工具链。他主导创建了 ReScript（前身为 BuckleScript），曾是 OCaml 的核心开发者之一。", "Hongbo Zhang started the MoonBit project and leads the development of its programming language and toolchain. He led the creation of ReScript, which grew out of BuckleScript, and was formerly a core OCaml developer.", "張宏波は MoonBit プロジェクトを立ち上げ、プログラミング言語とツールチェーンの開発を率いています。BuckleScript を前身とする ReScript の開発を主導し、かつては OCaml のコア開発者の一人でした。")}</p>
     #|      </article>
     #|    </section>
