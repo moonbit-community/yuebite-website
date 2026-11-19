@@ -10,10 +10,11 @@
 moon check --target js
 mkdir -p _site
 moon run . --target js --release > _site/index.html
-cp site.css _site/
+moon run . --target js --release -- --company > _site/company.html
+cp site.css moonbit-logo.png _site/
 ```
 
-打开 `_site/index.html` 预览；修改 `main.mbt` 或 `site.css` 后再生成一次。
+通过本地静态服务器预览 `_site/`；首页导航中的「公司」打开 `company.html`。修改 `main.mbt` 或 `site.css` 后重新执行上述命令。
 
 ## 发布
 
