@@ -92,10 +92,11 @@ fn main {
     #|</head>
     #|<body>
     #|  <header class="chrome-shell top">
-    $|    <a class="brand" href="\{home_url}"><img src="./moonbit-logo.png" alt="MoonBit" width="508" height="652"></a>
+    $|    <a class="brand" href="\{home_url}"><img src="./moonbit-wordmark.png" alt="MoonBit" width="677" height="173"></a>
     $|    <nav aria-label="\{localized(locale, "主导航", "Main navigation", "メインナビゲーション")}">
-    $|      <details class="product-nav"><summary>\{localized(locale, "产品", "Products", "製品")}</summary><div class="product-menu"><a href="https://seekmoon.moonbitlang.com/cloud">SeekMoon ↗</a></div></details>
-    $|      <a href="\{developer_url}">\{localized(locale, "开发者", "Developers", "開発者")}</a><a href="\{home_url}#technology">\{ecosystem_label(locale)}</a>
+    $|      <a href="https://seekmoon.moonbitlang.com/cloud">SeekMoon</a>
+    $|      <a href="\{developer_url}">\{localized(locale, "MoonBit 编程语言", "MoonBit Programming Language", "MoonBit プログラミング言語")}</a>
+    $|      <details class="ecosystem-nav"><summary>\{localized(locale, "生态", "Ecosystem", "エコシステム")}</summary><div class="ecosystem-menu"><a href="\{developer_url}">MoonBit ↗</a><a href="https://mooncakes.io/">Mooncakes ↗</a><a href="\{home_url}#education">\{localized(locale, "教育", "Education", "教育")}</a><a href="\{home_url}#competitions">\{localized(locale, "赛事", "Competitions", "コンテスト")}</a></div></details>
     $|      <a href="./company\{suffix}.html"\{company_current}>\{about_label}</a>
     #|    </nav>
     $|    <div class="nav-actions"><a href="./contact\{suffix}.html">\{localized(locale, "联系我们", "Contact us", "お問い合わせ")}</a><a class="nav-action" href="https://seekmoon.moonbitlang.com/cloud">\{localized(locale, "试用 SeekMoon", "Try SeekMoon", "SeekMoon を試す")} ↗</a></div>
@@ -125,6 +126,16 @@ fn main {
     #|      <div class="cards">
     $|        \{cards}
     #|      </div>
+    $|      <h3 id="education">\{localized(locale, "教育", "Education", "教育")}</h3>
+    #|      <div class="cards">
+    $|        <a href="https://www.moonbitlang.cn/blog/llvm-backend"><strong>\{localized(locale, "北京大学合作课程", "Peking University course", "北京大学との連携授業")}</strong><span>\{localized(locale, "北京大学研究生课程《编程语言的设计原理》将 MoonBit 纳入教学实践。", "Peking University’s graduate course on programming language design uses MoonBit for hands-on work.", "北京大学の大学院科目「プログラミング言語の設計原理」では、演習に MoonBit を採用しています。")}</span><span class="arrow" aria-hidden="true">↗</span></a>
+    $|        <a href="https://www.moonbitlang.cn/events/"><strong>\{localized(locale, "MoonBit 校园行", "MoonBit campus outreach", "MoonBit キャンパス交流")}</strong><span>\{localized(locale, "了解 MoonBit 校园活动和校园大使计划。", "Explore MoonBit campus events and the campus ambassador program.", "MoonBit の学内イベントやキャンパスアンバサダー制度を紹介します。")}</span><span class="arrow" aria-hidden="true">↗</span></a>
+    #|      </div>
+    $|      <h3 id="competitions">\{localized(locale, "赛事", "Competitions", "コンテスト")}</h3>
+    #|      <div class="cards">
+    $|        <a href="https://www.moonbitlang.cn/2025-mgpic"><strong>\{localized(locale, "2025 MoonBit 全球编程创新挑战赛", "2025 MoonBit Global Programming Innovation Challenge", "2025 MoonBit グローバルプログラミングチャレンジ")}</strong><span class="arrow" aria-hidden="true">↗</span></a>
+    $|        <a href="https://www.moonbitlang.com/2026-scc"><strong>\{localized(locale, "2026 MoonBit 软件合成挑战赛", "2026 MoonBit Software Synthesis Challenge", "2026 MoonBit ソフトウェア合成チャレンジ")}</strong><span class="arrow" aria-hidden="true">↗</span></a>
+    #|      </div>
     #|    </section>
     #|    <section class="shell section" id="about">
     #|      <p class="eyebrow">02 / ABOUT</p>
@@ -142,14 +153,19 @@ fn main {
     #|    <section class="shell section" aria-labelledby="team">
     $|      <h2 id="team">\{localized(locale, "团队介绍", "Our team", "チーム紹介")}</h2>
     $|      <p class="intro">\{localized(locale, "我们的工作涵盖编程语言、开发工具和开源生态，希望让开发者更容易把想法变成可用的软件。", "We work on programming languages, developer tools, and open source to help developers turn ideas into usable software.", "プログラミング言語、開発ツール、オープンソースを通じて、開発者がアイデアをソフトウェアにできるよう支援します。")}</p>
+    #|      <article class="founder-profile">
+    $|        <p class="eyebrow">\{localized(locale, "月比特科技创始人", "Founder of Yuebite Technology", "月比特科技の創業者")}</p>
+    $|        <h3>\{localized(locale, "张宏波", "Hongbo Zhang", "張宏波（Hongbo Zhang）")}</h3>
+    $|        <p>\{localized(locale, "张宏波发起 MoonBit 项目，并带领团队研发编程语言和开发工具链。他主导创建了 ReScript（前身为 BuckleScript），曾是 OCaml 的核心开发者之一。", "Hongbo Zhang started the MoonBit project and leads the development of its programming language and toolchain. He led the creation of ReScript, which grew out of BuckleScript, and was formerly a core OCaml developer.", "張宏波は MoonBit プロジェクトを立ち上げ、プログラミング言語とツールチェーンの開発を率いています。BuckleScript を前身とする ReScript の開発を主導し、かつては OCaml のコア開発者の一人でした。")}</p>
+    #|      </article>
     #|    </section>
     #|    <section class="shell section" aria-labelledby="roadmap">
     $|      <h2 id="roadmap">\{localized(locale, "公司发展路线图", "Company roadmap", "会社のロードマップ")}</h2>
-    $|      <p>\{localized(locale, "以下是发展方向，不代表已确定的发布时间。", "These are areas of focus, not release commitments.", "以下は取り組みの方向性であり、リリース時期を約束するものではありません。")}</p>
+    $|      <p>\{localized(locale, "MoonBit 与 SeekMoon 的公开里程碑。", "Public milestones for MoonBit and SeekMoon.", "MoonBit と SeekMoon の公開マイルストーン。")}</p>
     #|      <ol class="roadmap-list">
-    $|        <li>\{localized(locale, "语言与工具：完善 MoonBit 的语言和开发体验。", "Language and tools: improve the MoonBit development experience.", "言語とツール：MoonBit の開発体験を改善する。")}</li>
-    $|        <li>\{localized(locale, "开源生态：让开发者更容易发现和共享软件包。", "Open source: make packages easier to discover and share.", "オープンソース：パッケージを探しやすく、共有しやすくする。")}</li>
-    $|        <li>\{localized(locale, "云端开发：探索用 SeekMoon 从想法走到原型。", "Cloud development: explore how SeekMoon can take ideas to prototypes.", "クラウド開発：SeekMoon でアイデアを試作品にする方法を探る。")}</li>
+    $|        <li><time datetime="2023">\{localized(locale, "2023 年", "2023", "2023年")}</time><h3><a href="https://www.moonbitlang.com/blog/first-announce">\{localized(locale, "MoonBit 首次公开亮相", "MoonBit introduced", "MoonBit を初公開")}</a></h3></li>
+    $|        <li><time datetime="2026-02-09">\{localized(locale, "2026 年 2 月 9 日", "Feb 9, 2026", "2026年2月9日")}</time><h3><a href="https://www.moonbitlang.com/blog/moonbit-0-8-0-release">\{localized(locale, "MoonBit 0.8.0 发布", "MoonBit 0.8.0 released", "MoonBit 0.8.0 をリリース")}</a></h3></li>
+    $|        <li><time datetime="2026-09-01">\{localized(locale, "2026 年 9 月 1 日", "Sep 1, 2026", "2026年9月1日")}</time><h3><a href="https://www.moonbitlang.com/blog/seekmoon-from-ide-to-ade">\{localized(locale, "SeekMoon 公开介绍 Agent 开发环境", "SeekMoon introduces its Agent Development Environment", "SeekMoon がエージェント開発環境を紹介")}</a></h3></li>
     #|      </ol>
     #|    </section>
     #|    <section class="shell section" aria-labelledby="careers">

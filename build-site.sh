@@ -16,4 +16,4 @@ for locale in zh-CN en ja; do
     moon run . --target js --release -- "$@" > "_site/$page$suffix.html"
   done
 done
-cp site.css moonbit-logo.png _site/
+cp site.css moonbit-logo.png moonbit-wordmark.png _site/
