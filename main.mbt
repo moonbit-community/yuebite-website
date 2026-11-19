@@ -105,19 +105,19 @@ fn main {
     #|  <meta name="viewport" content="width=device-width, initial-scale=1">
     $|  <meta name="description" content="\{localized(locale, "月比特科技：了解 MoonBit 编程语言、开发工具与开源生态。", "Explore the MoonBit language, developer tools, and open-source ecosystem.", "MoonBit のプログラミング言語、開発ツール、オープンソースを紹介します。")}">
     $|  <title>\{title}</title>
-    #|  <link rel="stylesheet" href="./site.css?v=20261119-7">
+    #|  <link rel="stylesheet" href="./site.css?v=20261119-8">
     #|</head>
     #|<body>
     #|  <header class="chrome-shell top">
     $|    <a class="brand" href="\{home_url}"><img src="./moonbit-wordmark.png" alt="MoonBit" width="677" height="173"></a>
     $|    <nav aria-label="\{localized(locale, "主导航", "Main navigation", "メインナビゲーション")}">
-    $|      <a href="https://seekmoon.moonbitlang.com/cloud">\{localized(locale, "SeekMoon 智能体", "SeekMoon Agent", "SeekMoon エージェント")}</a>
+    $|      <a href="https://seekmoon.moonbitlang.com/">\{localized(locale, "SeekMoon 智能体", "SeekMoon Agent", "SeekMoon エージェント")}</a>
     $|      <a href="\{developer_url}">\{language_label}</a>
     $|      <details class="ecosystem-nav"><summary>\{ecosystem_nav_label}</summary><div class="ecosystem-menu"><a href="https://mooncakes.io/">Mooncakes ↗</a><a href="./education\{suffix}.html">\{education_label}</a><a href="./competitions\{suffix}.html">\{competitions_label}</a><a href="./events\{suffix}.html">\{events_label}</a></div></details>
     $|      <a href="\{news_url}"\{news_current}>\{news_label}</a>
     $|      <a href="./company\{suffix}.html"\{company_current}>\{about_label}</a>
     #|    </nav>
-    $|    <div class="nav-actions"><a href="./contact\{suffix}.html">\{localized(locale, "联系我们", "Contact us", "お問い合わせ")}</a><a class="nav-action" href="https://seekmoon.moonbitlang.com/cloud">\{localized(locale, "试用 SeekMoon", "Try SeekMoon", "SeekMoon を試す")} ↗</a></div>
+    $|    <div class="nav-actions"><a href="./contact\{suffix}.html">\{localized(locale, "联系我们", "Contact us", "お問い合わせ")}</a><a class="nav-action" href="https://seekmoon.moonbitlang.com/">\{localized(locale, "试用 SeekMoon", "Try SeekMoon", "SeekMoon を試す")} ↗</a></div>
     #|  </header>
   let home =
     #|  <main id="home">
@@ -125,7 +125,7 @@ fn main {
     #|      <div class="hero-text">
     $|        <h1 id="headline">\{brand}</h1>
     $|        <p class="hero-intro">\{localized(locale, "我们打造 MoonBit 编程语言和 SeekMoon 智能体，希望让软件创作不再是少数人的专长，让更多人把想象变成改变世界的作品。", "We build the MoonBit programming language and the SeekMoon agent with a vision: a world where more people can create software and turn their ideas into things that change the world.", "私たちはプログラミング言語 MoonBit と AI エージェント SeekMoon を開発し、より多くの人がソフトウェアをつくり、想像を世界を変える作品へと形にできる未来を目指します。")}</p>
-    $|        <a class="prompt" href="https://seekmoon.moonbitlang.com/cloud"><span>\{localized(locale, "用 SeekMoon，把想法变成项目", "Turn your ideas into projects with SeekMoon", "SeekMoon でアイデアをプロジェクトに")}</span><span class="prompt-action">\{localized(locale, "试用 SeekMoon", "Try SeekMoon", "SeekMoon を試す")} <span aria-hidden="true">↗</span></span></a>
+    $|        <a class="prompt" href="https://seekmoon.moonbitlang.com/"><span>\{localized(locale, "用 SeekMoon，把想法变成项目", "Turn your ideas into projects with SeekMoon", "SeekMoon でアイデアをプロジェクトに")}</span><span class="prompt-action">\{localized(locale, "试用 SeekMoon", "Try SeekMoon", "SeekMoon を試す")} <span aria-hidden="true">↗</span></span></a>
     $|        <div class="actions"><a class="secondary" href="\{developer_url}">MoonBit</a><a class="secondary" href="https://mooncakes.io/">Mooncakes</a><a class="secondary" href="./ecosystem\{suffix}.html">\{localized(locale, "开源生态", "Open source", "オープンソース")}</a><a class="secondary" href="./company\{suffix}.html">\{localized(locale, "关于我们", "About us", "私たちについて")}</a></div>
     #|      </div>
     #|    </section>
@@ -156,7 +156,7 @@ fn main {
     #|    </script>
     #|    <section class="shell seekmoon-cta" aria-labelledby="seekmoon-cta-title">
     $|      <h2 id="seekmoon-cta-title">\{localized(locale, "开始使用 SeekMoon", "Get started with SeekMoon", "SeekMoon を始める")}</h2>
-    $|      <a href="https://seekmoon.moonbitlang.com/cloud">\{localized(locale, "打开云端工作台", "Open the cloud workspace", "クラウドワークスペースを開く")} <span aria-hidden="true">↗</span></a>
+    $|      <a href="https://seekmoon.moonbitlang.com/">\{localized(locale, "打开云端工作台", "Open the cloud workspace", "クラウドワークスペースを開く")} <span aria-hidden="true">↗</span></a>
     #|    </section>
     #|  </main>
   let ecosystem_page =
@@ -306,7 +306,7 @@ fn main {
   let footer =
     #|  <footer class="chrome-shell">
     $|    <nav class="footer-index" aria-label="\{localized(locale, "网站索引", "Site index", "サイトマップ")}">
-    $|      <div><h2>\{localized(locale, "SeekMoon 智能体", "SeekMoon Agent", "SeekMoon エージェント")}</h2><ul><li><a href="https://seekmoon.moonbitlang.com/cloud">SeekMoon Cloud ↗</a></li></ul></div>
+    $|      <div><h2>\{localized(locale, "SeekMoon 智能体", "SeekMoon Agent", "SeekMoon エージェント")}</h2><ul><li><a href="https://seekmoon.moonbitlang.com/">SeekMoon Cloud ↗</a></li></ul></div>
     $|      <div><h2>\{language_label}</h2><ul><li><a href="\{developer_url}">\{localized(locale, "MoonBit 官网", "MoonBit website", "MoonBit 公式サイト")} ↗</a></li></ul></div>
     $|      <div><h2>\{ecosystem_nav_label}</h2><ul><li><a href="https://mooncakes.io/">Mooncakes ↗</a></li><li><a href="./education\{suffix}.html">\{education_label}</a></li><li><a href="./competitions\{suffix}.html">\{competitions_label}</a></li><li><a href="./events\{suffix}.html">\{events_label}</a></li><li><a href="./ecosystem\{suffix}.html">\{ecosystem_label(locale)}</a></li></ul></div>
     $|      <div><h2><a href="\{news_url}">\{news_label}</a></h2></div>
