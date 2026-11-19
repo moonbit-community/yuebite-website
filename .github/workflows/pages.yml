@@ -28,7 +28,7 @@ jobs:
           moon check --target js
           mkdir -p _site
           moon run . --target js --release > _site/index.html
-          cp site.css _site/
+          cp site.css moonbit-logo.png _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

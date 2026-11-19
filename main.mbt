@@ -52,13 +52,7 @@ fn main {
     #|      </div>
     #|    </section>
     #|    <section class="feature shell" aria-labelledby="feature-title">
-    #|      <svg class="orbit" viewBox="0 0 1100 430" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    #|        <defs><radialGradient id="moon" cx="30%" cy="22%" r="80%"><stop stop-color="#f6eaff"/><stop offset=".52" stop-color="#a994ff"/><stop offset="1" stop-color="#322561"/></radialGradient></defs>
-    #|        <circle cx="728" cy="215" r="265" fill="none" stroke="#aea0de" stroke-opacity=".3"/>
-    #|        <circle cx="728" cy="215" r="178" fill="url(#moon)"/>
-    #|        <ellipse cx="728" cy="215" rx="285" ry="80" transform="rotate(-24 728 215)" fill="none" stroke="#e3d5ff"/>
-    #|        <circle cx="945" cy="95" r="7" fill="#f6eaff"/>
-    #|      </svg>
+    #|      <img class="feature-logo" src="./moonbit-logo.png" alt="MoonBit 官方标志" width="508" height="652">
     #|      <div class="feature-copy"><p class="eyebrow">编程语言</p><h2 id="feature-title">探索 MoonBit</h2><a href="https://www.moonbitlang.cn/">访问 MoonBit 官网 ↗</a></div>
     #|    </section>
     #|    <section class="shell section" id="technology">
