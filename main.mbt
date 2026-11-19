@@ -70,14 +70,18 @@ fn main {
   let contact = args.contains("--contact")
   let locale = if args.contains("--en") { "en" } else if args.contains("--ja") { "ja" } else { "zh-CN" }
   let suffix = if locale == "zh-CN" { "" } else { "-" + locale }
-  let page_name = if contact { "contact" } else if company { "company" } else if args.contains("--education") { "education" } else if args.contains("--competitions") { "competitions" } else if args.contains("--ecosystem") { "ecosystem" } else { "index" }
+  let page_name = if contact { "contact" } else if company { "company" } else if args.contains("--education") { "education" } else if args.contains("--competitions") { "competitions" } else if args.contains("--ecosystem") { "ecosystem" } else if args.contains("--news") { "news" } else { "index" }
   let home_url = if suffix == "" { "./" } else { "./index" + suffix + ".html" }
   let brand = localized(locale, "月比特科技", "Yuebite Technology", "月比特科技")
   let about_label = localized(locale, "关于我们", "About us", "私たちについて")
   let contact_label = localized(locale, "联系我们", "Contact us", "お問い合わせ")
   let education_label = localized(locale, "教育", "Education", "教育")
   let competitions_label = localized(locale, "赛事", "Competitions", "コンテスト")
+  let news_label = localized(locale, "最新动态", "Latest updates", "最新情報")
+  let news_url = "./news" + suffix + ".html"
+  let news_current = if page_name == "news" { " aria-current=\"page\"" } else { "" }
   let title = match page_name {
+    "news" => news_label + " | " + brand
     "contact" => contact_label + " | " + brand
     "company" => about_label + " | " + brand
     "education" => education_label + " | " + brand
@@ -106,6 +110,7 @@ fn main {
     $|      <a href="https://seekmoon.moonbitlang.com/cloud">SeekMoon</a>
     $|      <a href="\{developer_url}">\{localized(locale, "MoonBit 编程语言", "MoonBit Programming Language", "MoonBit プログラミング言語")}</a>
     $|      <details class="ecosystem-nav"><summary>\{localized(locale, "生态", "Ecosystem", "エコシステム")}</summary><div class="ecosystem-menu"><a href="\{developer_url}">MoonBit ↗</a><a href="https://mooncakes.io/">Mooncakes ↗</a><a href="./education\{suffix}.html">\{education_label}</a><a href="./competitions\{suffix}.html">\{competitions_label}</a></div></details>
+    $|      <a href="\{news_url}"\{news_current}>\{news_label}</a>
     $|      <a href="./company\{suffix}.html"\{company_current}>\{about_label}</a>
     #|    </nav>
     $|    <div class="nav-actions"><a href="./contact\{suffix}.html">\{localized(locale, "联系我们", "Contact us", "お問い合わせ")}</a><a class="nav-action" href="https://seekmoon.moonbitlang.com/cloud">\{localized(locale, "试用 SeekMoon", "Try SeekMoon", "SeekMoon を試す")} ↗</a></div>
@@ -190,6 +195,15 @@ fn main {
     #|      </div>
     #|    </section>
     #|  </main>
+  let news_page =
+    #|  <main id="home"><section class="shell section" aria-labelledby="news-title">
+    $|      <h1 id="news-title">\{news_label}</h1>
+    $|      <p>\{localized(locale, "查看月比特科技的近期报道与活动消息。以下原文为中文。", "Read recent coverage and event announcements from Yuebite Technology. The articles are in Chinese.", "月比特科技の最近の記事やイベント情報をご覧ください。記事は中国語です。")}</p>
+    #|      <div class="cards">
+    $|        <a href="https://mp.weixin.qq.com/s/cnsj6Z1V9PCEKnb3wbSv0g"><strong>\{localized(locale, "MoonBit 1.0 发布 Meetup 暨黑客松季度决赛", "MoonBit 1.0 launch meetup and hackathon finals", "MoonBit 1.0 発表ミートアップとハッカソン決勝")}</strong><span>\{localized(locale, "微信公众号 · 活动预告", "WeChat · Event announcement", "WeChat・イベント告知")}</span><span class="arrow" aria-hidden="true">↗</span></a>
+    $|        <a href="https://mp.weixin.qq.com/s/Sd7Zv89bSiz7aZOEEi_KMg"><strong>\{localized(locale, "MoonBit 累计下载突破 1060 万", "MoonBit passes 10.6 million downloads", "MoonBit の累計ダウンロード数が1,060万を突破")}</strong><span>\{localized(locale, "微信公众号 · MoonBit 动态", "WeChat · MoonBit news", "WeChat・MoonBit ニュース")}</span><span class="arrow" aria-hidden="true">↗</span></a>
+    #|      </div>
+    #|  </section></main>
   let about =
     #|  <main id="home">
     #|    <section class="shell company-intro" aria-labelledby="about-title">
@@ -200,8 +214,8 @@ fn main {
     #|    <section class="shell section" aria-labelledby="team">
     $|      <h2 id="team">\{localized(locale, "团队介绍", "Our team", "チーム紹介")}</h2>
     #|      <article class="founder-profile">
-    $|        <p class="eyebrow">\{localized(locale, "月比特科技创始人", "Founder of Yuebite Technology", "月比特科技の創業者")}</p>
     $|        <h3>\{localized(locale, "张宏波", "Hongbo Zhang", "張宏波（Hongbo Zhang）")}</h3>
+    $|        <p class="founder-title">\{localized(locale, "月比特科技创始人", "Founder of Yuebite Technology", "月比特科技の創業者")}</p>
     $|        <p>\{localized(locale, "张宏波发起 MoonBit 项目，并带领团队研发编程语言和开发工具链。他主导创建了 ReScript（前身为 BuckleScript），曾是 OCaml 的核心开发者之一。", "Hongbo Zhang started the MoonBit project and leads the development of its programming language and toolchain. He led the creation of ReScript, which grew out of BuckleScript, and was formerly a core OCaml developer.", "張宏波は MoonBit プロジェクトを立ち上げ、プログラミング言語とツールチェーンの開発を率いています。BuckleScript を前身とする ReScript の開発を主導し、かつては OCaml のコア開発者の一人でした。")}</p>
     #|      </article>
     #|    </section>
@@ -262,13 +276,21 @@ fn main {
     #|        <input id="work-email" type="email" autocomplete="email" aria-describedby="contact-note" disabled>
     $|        <p id="contact-note">\{localized(locale, "在线表单暂未开放。开源项目相关问题可前往 GitHub 社区交流，请勿公开填写个人信息。", "The online form is not available yet. For open-source questions, visit GitHub. Do not share personal information publicly.", "オンラインフォームは準備中です。オープンソースに関する質問は GitHub へ。個人情報は公開しないでください。")}</p>
     $|        <a class="secondary" href="https://github.com/moonbit-community">\{localized(locale, "前往 GitHub 社区", "Visit the GitHub community", "GitHub コミュニティへ")} ↗</a>
+    #|        <section class="wechat-accounts" id="wechat" aria-labelledby="wechat-title">
+    $|          <h3 id="wechat-title">\{localized(locale, "微信公众号", "WeChat Official Accounts", "WeChat 公式アカウント")}</h3>
+    $|          <p>\{localized(locale, "打开微信扫一扫，关注公众号。", "Scan either QR code in WeChat to follow the account.", "WeChat で QR コードを読み取ってフォローできます。")}</p>
+    #|          <div class="wechat-codes">
+    $|            <figure><img src="./wechat-yuebite.png" alt="QR code" width="516" height="516"><figcaption>\{localized(locale, "月比特科技", "Yuebite Technology", "月比特科技")}</figcaption></figure>
+    $|            <figure><img src="./wechat-moonbit.png" alt="QR code" width="516" height="516"><figcaption>\{localized(locale, "MoonBit 社区", "MoonBit Community", "MoonBit コミュニティ")}</figcaption></figure>
+    #|          </div>
+    #|        </section>
     #|      </section>
     #|    </div>
     #|  </main>
   let footer =
     #|  <footer class="chrome-shell">
     $|    <nav class="footer-index" aria-label="\{localized(locale, "网站索引", "Site index", "サイトマップ")}">
-    $|      <div><h2>\{localized(locale, "产品", "Products", "製品")}</h2><ul><li><a href="https://seekmoon.moonbitlang.com/cloud">SeekMoon Cloud ↗</a></li><li><a href="\{home_url}#feature-title">\{localized(locale, "最近动态", "Latest updates", "最新情報")}</a></li></ul></div>
+    $|      <div><h2>\{localized(locale, "产品", "Products", "製品")}</h2><ul><li><a href="https://seekmoon.moonbitlang.com/cloud">SeekMoon Cloud ↗</a></li><li><a href="\{news_url}">\{news_label}</a></li></ul></div>
     $|      <div><h2>\{localized(locale, "开发者", "Developers", "開発者")}</h2><ul><li><a href="\{developer_url}">\{localized(locale, "MoonBit 官网", "MoonBit website", "MoonBit 公式サイト")} ↗</a></li><li><a href="https://mooncakes.io/">\{localized(locale, "软件包与模块", "Packages and modules", "パッケージとモジュール")} ↗</a></li></ul></div>
     $|      <div><h2>\{localized(locale, "开源生态", "Open source", "オープンソース")}</h2><ul><li><a href="./ecosystem\{suffix}.html">\{ecosystem_label(locale)}</a></li><li><a href="https://github.com/moonbit-community">\{localized(locale, "MoonBit 开源社区", "MoonBit open-source community", "MoonBit オープンソースコミュニティ")} ↗</a></li></ul></div>
     $|      <div><h2>\{localized(locale, "公司", "Company", "会社情報")}</h2><ul><li><a href="./company\{suffix}.html">\{localized(locale, "关于我们", "About us", "私たちについて")}</a></li><li><a href="./contact\{suffix}.html">\{localized(locale, "联系我们", "Contact us", "お問い合わせ")}</a></li></ul></div>
@@ -277,11 +299,10 @@ fn main {
     #|    <div class="footer">
     $|    <nav class="footer-links" aria-label="\{localized(locale, "社区链接", "Community links", "コミュニティリンク")}">
     $|      <a href="https://github.com/moonbit-community" aria-label="\{localized(locale, "MoonBit 开源社区", "MoonBit open-source community", "MoonBit オープンソースコミュニティ")} GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.14.08 1.73 1.16 1.73 1.16 1 .73 1.79.84 3.26.53.1-.73.39-1.23.71-1.51-2.5-.29-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.29-.5-1.43.11-2.98 0 0 .95-.3 3.09 1.15a10.78 10.78 0 0 1 5.63 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.55.23 2.69.12 2.98.72.79 1.15 1.79 1.15 3.02 0 4.32-2.63 5.27-5.14 5.55.4.35.76 1.03.76 2.08v3.51c0 .3.2.65.77.54A11.25 11.25 0 0 0 12 .75Z"/></svg></a>
-    $|      <button type="button" popovertarget="social-wechat" aria-label="\{localized(locale, "微信公众号", "WeChat Official Account", "WeChat 公式アカウント")}" title="\{localized(locale, "微信公众号", "WeChat Official Account", "WeChat 公式アカウント")}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 5C7 1 1 5 2 10c0 2 1 3 2 4l-1 3 4-2h2m7-7c-4 0-7 3-7 6s3 6 7 6l2-.3 3 1.3-.5-3c1-1 1.5-2 1.5-4 0-3-2.7-6-6-6Z"/><path d="M6 8h1m3 0h1m2 5h1m3 0h1"/></svg></button>
-    $|      <button type="button" popovertarget="social-rednote" aria-label="\{localized(locale, "小红书", "RedNote", "小紅書")}" title="\{localized(locale, "小红书", "RedNote", "小紅書")}"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5" fill="currentColor"/><text x="12" y="15" text-anchor="middle" font-size="7" font-weight="700" fill="white">\{localized(locale, "小红书", "RedNote", "小紅書")}</text></svg></button>
+    $|      <a href="./contact\{suffix}.html#wechat" aria-label="\{localized(locale, "微信公众号", "WeChat Official Account", "WeChat 公式アカウント")}" title="\{localized(locale, "微信公众号", "WeChat Official Account", "WeChat 公式アカウント")}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 5C7 1 1 5 2 10c0 2 1 3 2 4l-1 3 4-2h2m7-7c-4 0-7 3-7 6s3 6 7 6l2-.3 3 1.3-.5-3c1-1 1.5-2 1.5-4 0-3-2.7-6-6-6Z"/><path d="M6 8h1m3 0h1m2 5h1m3 0h1"/></svg></a>
+    $|      <a href="https://www.xiaohongshu.com/user/profile/636b072f000000001f01c84a" aria-label="\{localized(locale, "小红书", "RedNote", "小紅書")}" title="\{localized(locale, "小红书", "RedNote", "小紅書")}"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5" fill="currentColor"/><text x="12" y="15" text-anchor="middle" font-size="7" font-weight="700" fill="white">\{localized(locale, "小红书", "RedNote", "小紅書")}</text></svg></a>
+    $|      <a href="https://www.zhihu.com/people/moonbit" aria-label="\{localized(locale, "MoonBit 知乎主页", "MoonBit on Zhihu", "MoonBit の知乎プロフィール")}" title="\{localized(locale, "知乎", "Zhihu", "知乎")}"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5" fill="currentColor"/><text x="12" y="17" text-anchor="middle" font-size="15" font-weight="700" fill="white">知</text></svg></a>
     $|      <a href="https://x.com/Moonbitlang" aria-label="\{localized(locale, "MoonBit 的 X 账号", "MoonBit on X", "MoonBit の X アカウント")}" title="X"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 3h4l14 18h-4L3 3Zm17 0-7 8m-2 2-7 8"/></svg></a>
-    $|      <div class="social-panel" id="social-wechat" popover><strong>\{localized(locale, "微信公众号", "WeChat Official Account", "WeChat 公式アカウント")}</strong><p>\{localized(locale, "在微信的公众号搜索中输入 ", "Search WeChat Official Accounts for ", "WeChat の公式アカウント検索で入力：")}<b>moonbit</b>。</p><button type="button" popovertarget="social-wechat" popovertargetaction="hide">\{localized(locale, "关闭", "Close", "閉じる")}</button></div>
-    $|      <div class="social-panel" id="social-rednote" popover><strong>\{localized(locale, "小红书", "RedNote", "小紅書")}</strong><p>\{localized(locale, "在小红书搜索 ", "Search RedNote for ", "小紅書で検索：")}<b>MoonBit 月兔</b>。</p><button type="button" popovertarget="social-rednote" popovertargetaction="hide">\{localized(locale, "关闭", "Close", "閉じる")}</button></div>
     #|    </nav>
     $|    <div class="footer-meta"><span>© \{localized(locale, "月比特科技", "Yuebite Technology", "月比特科技")}</span><a href="#home">\{localized(locale, "返回顶部", "Back to top", "ページ上部へ")} ↑</a></div>
     $|    <details class="locale-picker"><summary class="footer-locale"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg>\{language_name(locale)}</summary><div class="locale-options">\{language_links}</div></details>
@@ -290,6 +311,7 @@ fn main {
     #|</body>
     #|</html>
   let page = match page_name {
+    "news" => news_page
     "contact" => contact_page
     "company" => about
     "education" => education_page
