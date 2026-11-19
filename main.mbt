@@ -75,6 +75,8 @@ fn main {
   let brand = localized(locale, "月比特科技", "Yuebite Technology", "月比特科技")
   let about_label = localized(locale, "关于我们", "About us", "私たちについて")
   let contact_label = localized(locale, "联系我们", "Contact us", "お問い合わせ")
+  let language_label = localized(locale, "MoonBit 编程语言", "MoonBit Programming Language", "MoonBit プログラミング言語")
+  let ecosystem_nav_label = localized(locale, "生态", "Ecosystem", "エコシステム")
   let education_label = localized(locale, "教育", "Education", "教育")
   let competitions_label = localized(locale, "赛事", "Competitions", "コンテスト")
   let events_label = localized(locale, "活动", "Events", "イベント")
@@ -103,15 +105,15 @@ fn main {
     #|  <meta name="viewport" content="width=device-width, initial-scale=1">
     $|  <meta name="description" content="\{localized(locale, "月比特科技：了解 MoonBit 编程语言、开发工具与开源生态。", "Explore the MoonBit language, developer tools, and open-source ecosystem.", "MoonBit のプログラミング言語、開発ツール、オープンソースを紹介します。")}">
     $|  <title>\{title}</title>
-    #|  <link rel="stylesheet" href="./site.css">
+    #|  <link rel="stylesheet" href="./site.css?v=20261119-4">
     #|</head>
     #|<body>
     #|  <header class="chrome-shell top">
     $|    <a class="brand" href="\{home_url}"><img src="./moonbit-wordmark.png" alt="MoonBit" width="677" height="173"></a>
     $|    <nav aria-label="\{localized(locale, "主导航", "Main navigation", "メインナビゲーション")}">
     $|      <a href="https://seekmoon.moonbitlang.com/cloud">SeekMoon</a>
-    $|      <a href="\{developer_url}">\{localized(locale, "MoonBit 编程语言", "MoonBit Programming Language", "MoonBit プログラミング言語")}</a>
-    $|      <details class="ecosystem-nav"><summary>\{localized(locale, "生态", "Ecosystem", "エコシステム")}</summary><div class="ecosystem-menu"><a href="https://mooncakes.io/">Mooncakes ↗</a><a href="./education\{suffix}.html">\{education_label}</a><a href="./competitions\{suffix}.html">\{competitions_label}</a><a href="./events\{suffix}.html">\{events_label}</a></div></details>
+    $|      <a href="\{developer_url}">\{language_label}</a>
+    $|      <details class="ecosystem-nav"><summary>\{ecosystem_nav_label}</summary><div class="ecosystem-menu"><a href="https://mooncakes.io/">Mooncakes ↗</a><a href="./education\{suffix}.html">\{education_label}</a><a href="./competitions\{suffix}.html">\{competitions_label}</a><a href="./events\{suffix}.html">\{events_label}</a></div></details>
     $|      <a href="\{news_url}"\{news_current}>\{news_label}</a>
     $|      <a href="./company\{suffix}.html"\{company_current}>\{about_label}</a>
     #|    </nav>
@@ -202,20 +204,21 @@ fn main {
     #|    </section>
     #|  </main>
   let events_page =
-    #|  <main id="home"><section class="shell section news-index" aria-labelledby="events-title">
+    #|  <main id="home"><section class="shell section news-index events-index" aria-labelledby="events-title">
     $|      <h1 id="events-title">\{events_label}</h1>
     $|      <p>\{localized(locale, "了解 MoonBit 的线下聚会与开发者社区活动。", "Explore MoonBit meetups and developer community events.", "MoonBit のミートアップや開発者コミュニティのイベントをご紹介します。")}</p>
     #|      <div class="news-grid">
     #|        <article><a class="news-story" href="https://mp.weixin.qq.com/s/cnsj6Z1V9PCEKnb3wbSv0g">
     #|          <img src="./news-moonbit-meetup.jpg" alt="">
-    $|          <p class="news-meta">\{localized(locale, "活动详情 · 微信公众号", "Event details · WeChat (Chinese)", "イベント詳細・WeChat（中国語）")}</p>
     $|          <h2>\{localized(locale, "MoonBit 1.0 发布 Meetup 暨黑客松季度决赛", "MoonBit 1.0 launch meetup and hackathon finals", "MoonBit 1.0 発表ミートアップとハッカソン決勝")}</h2>
     #|          <span class="news-arrow" aria-hidden="true">↗</span>
+    $|          <p class="event-description">\{localized(locale, "一场围绕 MoonBit 1.0 发布与黑客松季度决赛的社区聚会。", "A community meetup for the MoonBit 1.0 launch and the quarterly hackathon finals.", "MoonBit 1.0 の発表とハッカソンの四半期決勝を行うコミュニティイベントです。")}</p>
+    $|          <p class="news-meta">\{localized(locale, "活动详情 · 微信公众号", "Event details · WeChat (Chinese)", "イベント詳細・WeChat（中国語）")}</p>
     #|        </a></article>
     #|      </div>
     #|  </section></main>
   let news_page =
-    #|  <main id="home"><section class="shell section news-index" aria-labelledby="news-title">
+    #|  <main id="home"><section class="shell section news-index news-archive" aria-labelledby="news-title">
     $|      <h1 id="news-title">\{news_label}</h1>
     $|      <p>\{localized(locale, "查看月比特科技的近期报道与活动消息。以下原文为中文。", "Read recent coverage and event announcements from Yuebite Technology. The articles are in Chinese.", "月比特科技の最近の記事やイベント情報をご覧ください。記事は中国語です。")}</p>
     #|      <div class="news-grid">
@@ -256,7 +259,7 @@ fn main {
     #|    <section class="shell section" aria-labelledby="roadmap">
     $|      <h2 id="roadmap">\{localized(locale, "公司发展路线图", "Company roadmap", "会社のロードマップ")}</h2>
     $|      <p>\{localized(locale, "MoonBit 与 SeekMoon 的公开里程碑。", "Public milestones for MoonBit and SeekMoon.", "MoonBit と SeekMoon の公開マイルストーン。")}</p>
-    #|      <ol class="roadmap-list">
+    #|      <div class="roadmap-scroll" role="region" aria-labelledby="roadmap" tabindex="0"><ol class="roadmap-list">
     $|        <li><time datetime="2022-09-19">\{localized(locale, "2022 年 9 月 19 日", "Sep 19, 2022", "2022年9月19日")}</time><h3><a href="https://www.moonbitlang.cn/blog/moonbit-third-anniversary">\{localized(locale, "MoonBit 项目正式立项", "MoonBit project begins", "MoonBit プロジェクトが正式に始動")}</a></h3></li>
     $|        <li><time datetime="2023-08-18">\{localized(locale, "2023 年 8 月 18 日", "Aug 18, 2023", "2023年8月18日")}</time><h3><a href="https://www.moonbitlang.com/blog/first-announce">\{localized(locale, "MoonBit 首次公开发布", "MoonBit first public release", "MoonBit を初公開")}</a></h3></li>
     $|        <li><time datetime="2025-06-18">\{localized(locale, "2025 年 6 月 18 日", "Jun 18, 2025", "2025年6月18日")}</time><h3><a href="https://www.moonbitlang.cn/about-us/">\{localized(locale, "MoonBit Beta 发布", "MoonBit Beta released", "MoonBit Beta をリリース")}</a></h3></li>
@@ -264,7 +267,7 @@ fn main {
     $|        <li><time datetime="2026-09-01">\{localized(locale, "2026 年 9 月 1 日", "Sep 1, 2026", "2026年9月1日")}</time><h3><a href="https://www.moonbitlang.com/blog/seekmoon-from-ide-to-ade">\{localized(locale, "SeekMoon 公开介绍 Agent 开发环境", "SeekMoon introduces its Agent Development Environment", "SeekMoon がエージェント開発環境を紹介")}</a></h3></li>
     $|        <li><h3>\{localized(locale, "深圳月比特科技有限公司成立", "Yuebite Technology is founded in Shenzhen", "深圳月比特科技有限公司を設立")}</h3></li>
     $|        <li><time datetime="2026-11-28">\{localized(locale, "2026 年 11 月 28 日 · 计划", "Nov 28, 2026 · Planned", "2026年11月28日・予定")}</time><h3>\{localized(locale, "MoonBit 1.0 发布 Meetup", "MoonBit 1.0 launch meetup", "MoonBit 1.0 発表ミートアップ")}</h3></li>
-    #|      </ol>
+    #|      </ol></div>
     #|    </section>
     #|    <section class="shell section" aria-labelledby="careers">
     $|      <h2 id="careers">\{localized(locale, "加入我们", "Careers", "採用情報")}</h2>
@@ -324,11 +327,11 @@ fn main {
   let footer =
     #|  <footer class="chrome-shell">
     $|    <nav class="footer-index" aria-label="\{localized(locale, "网站索引", "Site index", "サイトマップ")}">
-    $|      <div><h2>\{localized(locale, "产品", "Products", "製品")}</h2><ul><li><a href="https://seekmoon.moonbitlang.com/cloud">SeekMoon Cloud ↗</a></li><li><a href="\{news_url}">\{news_label}</a></li></ul></div>
-    $|      <div><h2>\{localized(locale, "开发者", "Developers", "開発者")}</h2><ul><li><a href="\{developer_url}">\{localized(locale, "MoonBit 官网", "MoonBit website", "MoonBit 公式サイト")} ↗</a></li><li><a href="https://mooncakes.io/">\{localized(locale, "软件包与模块", "Packages and modules", "パッケージとモジュール")} ↗</a></li></ul></div>
-    $|      <div><h2>\{localized(locale, "开源生态", "Open source", "オープンソース")}</h2><ul><li><a href="./ecosystem\{suffix}.html">\{ecosystem_label(locale)}</a></li><li><a href="https://github.com/moonbit-community">\{localized(locale, "MoonBit 开源社区", "MoonBit open-source community", "MoonBit オープンソースコミュニティ")} ↗</a></li></ul></div>
-    $|      <div><h2>\{localized(locale, "公司", "Company", "会社情報")}</h2><ul><li><a href="./company\{suffix}.html">\{localized(locale, "关于我们", "About us", "私たちについて")}</a></li><li><a href="./contact\{suffix}.html">\{localized(locale, "联系我们", "Contact us", "お問い合わせ")}</a></li></ul></div>
-    $|      <div><h2>\{localized(locale, "更多", "More", "その他")}</h2><ul><li><a href="https://github.com/moonbit-community/yuebite-website">\{localized(locale, "官网源代码", "Website source code", "サイトのソースコード")} ↗</a></li></ul></div>
+    $|      <div><h2>SeekMoon</h2><ul><li><a href="https://seekmoon.moonbitlang.com/cloud">SeekMoon Cloud ↗</a></li></ul></div>
+    $|      <div><h2>\{language_label}</h2><ul><li><a href="\{developer_url}">\{localized(locale, "MoonBit 官网", "MoonBit website", "MoonBit 公式サイト")} ↗</a></li></ul></div>
+    $|      <div><h2>\{ecosystem_nav_label}</h2><ul><li><a href="https://mooncakes.io/">Mooncakes ↗</a></li><li><a href="./education\{suffix}.html">\{education_label}</a></li><li><a href="./competitions\{suffix}.html">\{competitions_label}</a></li><li><a href="./events\{suffix}.html">\{events_label}</a></li><li><a href="./ecosystem\{suffix}.html">\{ecosystem_label(locale)}</a></li></ul></div>
+    $|      <div><h2><a href="\{news_url}">\{news_label}</a></h2></div>
+    $|      <div><h2><a href="./company\{suffix}.html">\{about_label}</a></h2><ul><li><a href="./contact\{suffix}.html">\{contact_label}</a></li><li><a href="https://github.com/moonbit-community/yuebite-website">\{localized(locale, "官网源代码", "Website source code", "サイトのソースコード")} ↗</a></li></ul></div>
     #|    </nav>
     #|    <div class="footer">
     $|    <nav class="footer-links" aria-label="\{localized(locale, "社区链接", "Community links", "コミュニティリンク")}">
