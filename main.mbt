@@ -70,13 +70,14 @@ fn main {
   let contact = args.contains("--contact")
   let locale = if args.contains("--en") { "en" } else if args.contains("--ja") { "ja" } else { "zh-CN" }
   let suffix = if locale == "zh-CN" { "" } else { "-" + locale }
-  let page_name = if contact { "contact" } else if company { "company" } else if args.contains("--education") { "education" } else if args.contains("--competitions") { "competitions" } else if args.contains("--ecosystem") { "ecosystem" } else if args.contains("--news") { "news" } else { "index" }
+  let page_name = if contact { "contact" } else if company { "company" } else if args.contains("--education") { "education" } else if args.contains("--competitions") { "competitions" } else if args.contains("--events") { "events" } else if args.contains("--ecosystem") { "ecosystem" } else if args.contains("--news") { "news" } else { "index" }
   let home_url = if suffix == "" { "./" } else { "./index" + suffix + ".html" }
   let brand = localized(locale, "月比特科技", "Yuebite Technology", "月比特科技")
   let about_label = localized(locale, "关于我们", "About us", "私たちについて")
   let contact_label = localized(locale, "联系我们", "Contact us", "お問い合わせ")
   let education_label = localized(locale, "教育", "Education", "教育")
   let competitions_label = localized(locale, "赛事", "Competitions", "コンテスト")
+  let events_label = localized(locale, "活动", "Events", "イベント")
   let news_label = localized(locale, "最新动态", "Latest updates", "最新情報")
   let news_url = "./news" + suffix + ".html"
   let news_current = if page_name == "news" { " aria-current=\"page\"" } else { "" }
@@ -86,6 +87,7 @@ fn main {
     "company" => about_label + " | " + brand
     "education" => education_label + " | " + brand
     "competitions" => competitions_label + " | " + brand
+    "events" => events_label + " | " + brand
     "ecosystem" => ecosystem_label(locale) + " | " + brand
     _ => brand
   }
@@ -109,7 +111,7 @@ fn main {
     $|    <nav aria-label="\{localized(locale, "主导航", "Main navigation", "メインナビゲーション")}">
     $|      <a href="https://seekmoon.moonbitlang.com/cloud">SeekMoon</a>
     $|      <a href="\{developer_url}">\{localized(locale, "MoonBit 编程语言", "MoonBit Programming Language", "MoonBit プログラミング言語")}</a>
-    $|      <details class="ecosystem-nav"><summary>\{localized(locale, "生态", "Ecosystem", "エコシステム")}</summary><div class="ecosystem-menu"><a href="\{developer_url}">MoonBit ↗</a><a href="https://mooncakes.io/">Mooncakes ↗</a><a href="./education\{suffix}.html">\{education_label}</a><a href="./competitions\{suffix}.html">\{competitions_label}</a></div></details>
+    $|      <details class="ecosystem-nav"><summary>\{localized(locale, "生态", "Ecosystem", "エコシステム")}</summary><div class="ecosystem-menu"><a href="https://mooncakes.io/">Mooncakes ↗</a><a href="./education\{suffix}.html">\{education_label}</a><a href="./competitions\{suffix}.html">\{competitions_label}</a><a href="./events\{suffix}.html">\{events_label}</a></div></details>
     $|      <a href="\{news_url}"\{news_current}>\{news_label}</a>
     $|      <a href="./company\{suffix}.html"\{company_current}>\{about_label}</a>
     #|    </nav>
@@ -199,13 +201,36 @@ fn main {
     #|      </div>
     #|    </section>
     #|  </main>
+  let events_page =
+    #|  <main id="home"><section class="shell section news-index" aria-labelledby="events-title">
+    $|      <h1 id="events-title">\{events_label}</h1>
+    $|      <p>\{localized(locale, "了解 MoonBit 的线下聚会与开发者社区活动。", "Explore MoonBit meetups and developer community events.", "MoonBit のミートアップや開発者コミュニティのイベントをご紹介します。")}</p>
+    #|      <div class="news-grid">
+    #|        <article><a class="news-story" href="https://mp.weixin.qq.com/s/cnsj6Z1V9PCEKnb3wbSv0g">
+    #|          <img src="./news-moonbit-meetup.jpg" alt="">
+    $|          <p class="news-meta">\{localized(locale, "活动详情 · 微信公众号", "Event details · WeChat (Chinese)", "イベント詳細・WeChat（中国語）")}</p>
+    $|          <h2>\{localized(locale, "MoonBit 1.0 发布 Meetup 暨黑客松季度决赛", "MoonBit 1.0 launch meetup and hackathon finals", "MoonBit 1.0 発表ミートアップとハッカソン決勝")}</h2>
+    #|          <span class="news-arrow" aria-hidden="true">↗</span>
+    #|        </a></article>
+    #|      </div>
+    #|  </section></main>
   let news_page =
-    #|  <main id="home"><section class="shell section" aria-labelledby="news-title">
+    #|  <main id="home"><section class="shell section news-index" aria-labelledby="news-title">
     $|      <h1 id="news-title">\{news_label}</h1>
     $|      <p>\{localized(locale, "查看月比特科技的近期报道与活动消息。以下原文为中文。", "Read recent coverage and event announcements from Yuebite Technology. The articles are in Chinese.", "月比特科技の最近の記事やイベント情報をご覧ください。記事は中国語です。")}</p>
-    #|      <div class="cards">
-    $|        <a href="https://mp.weixin.qq.com/s/cnsj6Z1V9PCEKnb3wbSv0g"><strong>\{localized(locale, "MoonBit 1.0 发布 Meetup 暨黑客松季度决赛", "MoonBit 1.0 launch meetup and hackathon finals", "MoonBit 1.0 発表ミートアップとハッカソン決勝")}</strong><span>\{localized(locale, "微信公众号 · 活动预告", "WeChat · Event announcement", "WeChat・イベント告知")}</span><span class="arrow" aria-hidden="true">↗</span></a>
-    $|        <a href="https://mp.weixin.qq.com/s/Sd7Zv89bSiz7aZOEEi_KMg"><strong>\{localized(locale, "MoonBit 累计下载突破 1060 万", "MoonBit passes 10.6 million downloads", "MoonBit の累計ダウンロード数が1,060万を突破")}</strong><span>\{localized(locale, "微信公众号 · MoonBit 动态", "WeChat · MoonBit news", "WeChat・MoonBit ニュース")}</span><span class="arrow" aria-hidden="true">↗</span></a>
+    #|      <div class="news-grid">
+    #|        <article><a class="news-story" href="https://mp.weixin.qq.com/s/cnsj6Z1V9PCEKnb3wbSv0g">
+    #|          <img src="./news-moonbit-meetup.jpg" alt="">
+    $|          <p class="news-meta">\{localized(locale, "活动预告 · 微信公众号", "Event announcement · WeChat", "イベント告知・WeChat")}</p>
+    $|          <h2>\{localized(locale, "MoonBit 1.0 发布 Meetup 暨黑客松季度决赛", "MoonBit 1.0 launch meetup and hackathon finals", "MoonBit 1.0 発表ミートアップとハッカソン決勝")}</h2>
+    #|          <span class="news-arrow" aria-hidden="true">↗</span>
+    #|        </a></article>
+    #|        <article><a class="news-story" href="https://mp.weixin.qq.com/s/Sd7Zv89bSiz7aZOEEi_KMg">
+    #|          <img src="./news-moonbit-downloads.jpg" alt="">
+    $|          <p class="news-meta">\{localized(locale, "MoonBit 动态 · 微信公众号", "MoonBit news · WeChat", "MoonBit ニュース・WeChat")}</p>
+    $|          <h2>\{localized(locale, "MoonBit 累计下载突破 1060 万", "MoonBit passes 10.6 million downloads", "MoonBit の累計ダウンロード数が1,060万を突破")}</h2>
+    #|          <span class="news-arrow" aria-hidden="true">↗</span>
+    #|        </a></article>
     #|      </div>
     #|  </section></main>
   let about =
@@ -218,11 +243,14 @@ fn main {
     #|    <section class="shell section" aria-labelledby="team">
     $|      <h2 id="team">\{localized(locale, "团队介绍", "Our team", "チーム紹介")}</h2>
     #|      <article class="founder-profile">
-    #|        <header>
+    $|        <img class="founder-photo" src="https://www.idea.edu.cn/wp-content/uploads/2023/01/2023011119510359.jpg" alt="\{localized(locale, "张宏波", "Hongbo Zhang", "張宏波")}" loading="lazy">
+    #|        <div class="founder-copy">
     $|        <h3>\{localized(locale, "张宏波", "Hongbo Zhang", "張宏波（Hongbo Zhang）")}</h3>
     $|        <p class="founder-title">\{localized(locale, "月比特科技创始人", "Founder of Yuebite Technology", "月比特科技の創業者")}</p>
-    #|        </header>
     $|        <p>\{localized(locale, "张宏波发起 MoonBit 项目，并带领团队研发编程语言和开发工具链。他主导创建了 ReScript（前身为 BuckleScript），曾是 OCaml 的核心开发者之一。", "Hongbo Zhang started the MoonBit project and leads the development of its programming language and toolchain. He led the creation of ReScript, which grew out of BuckleScript, and was formerly a core OCaml developer.", "張宏波は MoonBit プロジェクトを立ち上げ、プログラミング言語とツールチェーンの開発を率いています。BuckleScript を前身とする ReScript の開発を主導し、かつては OCaml のコア開発者の一人でした。")}</p>
+    $|        <p>\{localized(locale, "他本科毕业于清华大学电子工程系，曾在宾夕法尼亚大学从事编程语言方向的博士研究。他的研究涵盖编程语言设计与实现、编译器及多后端工具链、函数式语言和类型系统。", "He earned his undergraduate degree in electronic engineering from Tsinghua University and pursued doctoral research in programming languages at the University of Pennsylvania. His research spans language design and implementation, compilers and multi-backend toolchains, functional programming, and type systems.", "清華大学電子工程系を卒業し、ペンシルベニア大学でプログラミング言語の博士課程の研究に取り組みました。研究分野は言語設計と実装、コンパイラとマルチバックエンドのツールチェーン、関数型言語、型システムです。")}</p>
+    $|        <a href="https://mp.weixin.qq.com/s/bXy3MRiLLXd9RKvLBSo3wA">\{localized(locale, "阅读创始人专访", "Read the interview in Chinese", "中国語のインタビューを読む")} ↗</a>
+    #|        </div>
     #|      </article>
     #|    </section>
     #|    <section class="shell section" aria-labelledby="roadmap">
@@ -322,6 +350,7 @@ fn main {
     "company" => about
     "education" => education_page
     "competitions" => competitions_page
+    "events" => events_page
     "ecosystem" => ecosystem_page
     _ => home
   }
