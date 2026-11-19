@@ -110,9 +110,18 @@ fn main {
     $|        <div class="actions"><a class="secondary" href="\{developer_url}">MoonBit</a><a class="secondary" href="https://mooncakes.io/">Mooncakes</a><a class="secondary" href="#technology">\{localized(locale, "开源生态", "Open source", "オープンソース")}</a><a class="secondary" href="./company\{suffix}.html">\{localized(locale, "关于我们", "About us", "私たちについて")}</a></div>
     #|      </div>
     #|    </section>
-    #|    <section class="feature shell" aria-labelledby="feature-title">
+    #|    <section class="updates shell" id="feature-title" aria-labelledby="updates-title">
+    $|      <div class="updates-controls"><h2 id="updates-title">\{localized(locale, "最近动态", "Latest updates", "最新情報")}</h2>
+    $|        <fieldset><legend>\{localized(locale, "切换文章", "Select an article", "記事を切り替える")}</legend><label><input type="radio" name="updates-slide" value="1" checked> 1</label><label><input type="radio" name="updates-slide" value="2"> 2</label></fieldset>
+    #|      </div>
+    #|      <article class="feature" data-slide="1">
     $|      <img class="feature-logo" src="./moonbit-logo.png" alt="\{localized(locale, "MoonBit 官方标志", "Official MoonBit logo", "MoonBit 公式ロゴ")}" width="508" height="652">
-    $|      <div class="feature-copy"><p class="eyebrow">\{localized(locale, "微信公众号", "WeChat Official Account", "WeChat 公式アカウント")}</p><h2 id="feature-title">\{localized(locale, "最近动态", "Latest updates", "最新情報")}</h2><a href="https://mp.weixin.qq.com/s/Sd7Zv89bSiz7aZOEEi_KMg">\{localized(locale, "阅读公众号文章", "Read the article in Chinese", "中国語の記事を読む")} ↗</a></div>
+    $|      <div class="feature-copy"><p class="eyebrow">\{localized(locale, "微信公众号", "WeChat Official Account", "WeChat 公式アカウント")}</p><h3>\{localized(locale, "公众号动态 01", "WeChat update 01", "WeChat のお知らせ 01")}</h3><a href="https://mp.weixin.qq.com/s/Sd7Zv89bSiz7aZOEEi_KMg">\{localized(locale, "阅读公众号文章", "Read the article in Chinese", "中国語の記事を読む")} ↗</a></div>
+    #|      </article>
+    #|      <article class="feature" data-slide="2">
+    #|        <img class="feature-logo" src="./moonbit-logo.png" alt="" width="508" height="652">
+    $|        <div class="feature-copy"><p class="eyebrow">\{localized(locale, "微信公众号", "WeChat Official Account", "WeChat 公式アカウント")}</p><h3>\{localized(locale, "公众号动态 02", "WeChat update 02", "WeChat のお知らせ 02")}</h3><a href="https://mp.weixin.qq.com/s/cnsj6Z1V9PCEKnb3wbSv0g">\{localized(locale, "阅读公众号文章", "Read the article in Chinese", "中国語の記事を読む")} ↗</a></div>
+    #|      </article>
     #|    </section>
     #|    <section class="shell section" id="technology">
     #|      <p class="eyebrow">01 / TECHNOLOGY</p>

@@ -54,7 +54,12 @@ h1{font-size:clamp(1.75rem,4vw,2.9rem);line-height:1.2;letter-spacing:-.045em;fo
 .feature{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"copy logo";align-items:center;min-height:350px;border-radius:24px;background:radial-gradient(circle at 75% 50%,#faf8ff 0 19%,transparent 19.2%),#efedf6}
 .feature-logo{grid-area:logo;justify-self:center;width:clamp(145px,19vw,220px);height:auto;margin-block:24px}
 .feature-copy{grid-area:copy;padding:clamp(24px,5vw,64px)}
-.feature h2{margin:8px 0 12px;font-size:clamp(2.2rem,5vw,4rem);font-weight:600;letter-spacing:-.04em}
+.feature h3{margin:8px 0 12px;font-size:clamp(2.2rem,5vw,4rem);font-weight:600;letter-spacing:-.04em}
+.updates-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.updates-controls h2{margin:0}
+.updates-controls fieldset{margin:0;border:0;padding:0;font-size:.85rem}
+.updates-controls label{display:inline-flex;align-items:center;gap:4px;padding:4px 8px;cursor:pointer}
+.updates:not(:has(input[value="2"]:checked)) [data-slide="2"],.updates:has(input[value="2"]:checked) [data-slide="1"]{display:none}
 .feature-copy p:not(.eyebrow){color:var(--muted);max-width:24rem}
 .feature-copy a{color:var(--accent);font-weight:650}
 .feature a:hover{text-decoration:underline}
