@@ -28,6 +28,7 @@ a:focus-visible{outline:2px solid #7751cf;outline-offset:5px}
 .nav-action,.actions,.footer{font-size:.92rem}
 .top a:hover,.secondary:hover,.footer a:hover{text-decoration:underline;text-underline-offset:4px}
 .hero{text-align:center;padding:clamp(64px,9vw,120px) 0 clamp(56px,7vw,90px)}
+.hero-intro{max-width:38rem;margin:16px auto 28px;color:var(--muted);text-wrap:pretty}
 .company-intro{text-align:center;padding-block:clamp(64px,9vw,120px);border-bottom:1px solid var(--line)}
 .company-intro .intro{margin-inline:auto}
 .founder-profile{display:grid;grid-template-columns:minmax(0,30%) minmax(0,1fr);align-items:center;gap:clamp(24px,4vw,48px);margin-top:28px;padding:clamp(24px,4vw,48px);background:#f5f5f5;border-radius:20px}

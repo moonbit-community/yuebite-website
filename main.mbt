@@ -105,7 +105,7 @@ fn main {
     #|  <meta name="viewport" content="width=device-width, initial-scale=1">
     $|  <meta name="description" content="\{localized(locale, "月比特科技：了解 MoonBit 编程语言、开发工具与开源生态。", "Explore the MoonBit language, developer tools, and open-source ecosystem.", "MoonBit のプログラミング言語、開発ツール、オープンソースを紹介します。")}">
     $|  <title>\{title}</title>
-    #|  <link rel="stylesheet" href="./site.css?v=20261119-6">
+    #|  <link rel="stylesheet" href="./site.css?v=20261119-7">
     #|</head>
     #|<body>
     #|  <header class="chrome-shell top">
@@ -123,9 +123,10 @@ fn main {
     #|  <main id="home">
     #|    <section class="hero shell" aria-labelledby="headline">
     #|      <div class="hero-text">
-    $|        <h1 id="headline">\{localized(locale, "今天想用 SeekMoon 做什么？", "What will you build with SeekMoon today?", "今日は SeekMoon で何を作りますか？")}</h1>
-    $|        <a class="prompt" href="https://seekmoon.moonbitlang.com/cloud"><span>\{localized(locale, "用 SeekMoon，把想法变成项目", "Turn your ideas into projects with SeekMoon", "SeekMoon でアイデアをプロジェクトに")}</span><span class="prompt-action">\{localized(locale, "打开云端工作台", "Open the cloud workspace", "クラウドワークスペースを開く")} <span aria-hidden="true">↗</span></span></a>
-    $|        <div class="actions"><a class="secondary" href="\{developer_url}">MoonBit</a><a class="secondary" href="https://mooncakes.io/">Mooncakes</a><a class="secondary" href="./ecosystem\{suffix}.html">\{localized(locale, "开源生态", "Open source", "オープンソース")}</a><a class="secondary" href="./company\{suffix}.html">\{localized(locale, "关于我们", "About us", "私たちについて")}</a></div>
+    $|        <h1 id="headline">\{brand}</h1>
+    $|        <p class="hero-intro">\{localized(locale, "我们打造 MoonBit 编程语言和 SeekMoon 智能体，帮助开发者写代码，也让更多人把想法做成可用的项目。", "We build the MoonBit programming language and the SeekMoon agent to help developers write code and make it easier for anyone to turn ideas into working projects.", "プログラミング言語 MoonBit と AI エージェント SeekMoon を開発し、コードを書く人を支え、誰もがアイデアを形にできるようにします。")}</p>
+    $|        <a class="prompt" href="https://seekmoon.moonbitlang.com/cloud"><span>\{localized(locale, "用 SeekMoon，把想法变成项目", "Turn your ideas into projects with SeekMoon", "SeekMoon でアイデアをプロジェクトに")}</span><span class="prompt-action">\{localized(locale, "试用 SeekMoon", "Try SeekMoon", "SeekMoon を試す")} <span aria-hidden="true">↗</span></span></a>
+    $|        <div class="actions"><a class="secondary" href="\{developer_url}">\{localized(locale, "了解 MoonBit 编程语言", "Explore the MoonBit language", "プログラミング言語 MoonBit を知る")} ↗</a></div>
     #|      </div>
     #|    </section>
     #|    <section class="updates shell" id="feature-title" aria-labelledby="updates-title">
@@ -234,7 +235,7 @@ fn main {
     #|    <section class="shell section" aria-labelledby="team">
     $|      <h2 id="team">\{localized(locale, "团队介绍", "Our team", "チーム紹介")}</h2>
     #|      <article class="founder-profile">
-    $|        <img class="founder-photo" src="https://www.idea.edu.cn/wp-content/uploads/2023/01/2023011119510359.jpg" alt="\{localized(locale, "张宏波", "Hongbo Zhang", "張宏波")}" loading="lazy">
+    $|        <img class="founder-photo" src="./founder-hongbo-zhang.png" alt="\{localized(locale, "张宏波", "Hongbo Zhang", "張宏波")}" width="533" height="800" loading="lazy">
     #|        <div class="founder-copy">
     $|        <h3>\{localized(locale, "张宏波", "Hongbo Zhang", "張宏波（Hongbo Zhang）")}</h3>
     $|        <p class="founder-title">\{localized(locale, "月比特科技创始人", "Founder of Yuebite Technology", "月比特科技の創業者")}</p>
