@@ -1,0 +1,3 @@
+name = "moonbit-community/yuebite-website"
+
+version = "0.1.0"
