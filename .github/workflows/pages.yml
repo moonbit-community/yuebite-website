@@ -26,10 +26,7 @@ jobs:
       - name: Build site with MoonBit
         run: |
           moon check --target js
-          mkdir -p _site
-          moon run . --target js --release > _site/index.html
-          moon run . --target js --release -- --company > _site/company.html
-          cp site.css moonbit-logo.png _site/
+          sh build-site.sh
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

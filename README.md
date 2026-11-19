@@ -8,13 +8,10 @@
 
 ```sh
 moon check --target js
-mkdir -p _site
-moon run . --target js --release > _site/index.html
-moon run . --target js --release -- --company > _site/company.html
-cp site.css moonbit-logo.png _site/
+sh build-site.sh
 ```
 
-通过本地静态服务器预览 `_site/`；首页导航中的「公司」打开 `company.html`。修改 `main.mbt` 或 `site.css` 后重新执行上述命令。
+通过本地静态服务器预览 `_site/`。构建生成首页、关于我们和联系我们的中文、英文和日文版本；页脚可切换同一页面的语言。修改 `main.mbt` 或 `site.css` 后重新执行上述命令。
 
 ## 发布
 
