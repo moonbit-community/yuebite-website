@@ -105,7 +105,7 @@ fn main {
     #|  <meta name="viewport" content="width=device-width, initial-scale=1">
     $|  <meta name="description" content="\{localized(locale, "月比特科技：了解 MoonBit 编程语言、开发工具与开源生态。", "Explore the MoonBit language, developer tools, and open-source ecosystem.", "MoonBit のプログラミング言語、開発ツール、オープンソースを紹介します。")}">
     $|  <title>\{title}</title>
-    #|  <link rel="stylesheet" href="./site.css?v=20261119-4">
+    #|  <link rel="stylesheet" href="./site.css?v=20261119-6">
     #|</head>
     #|<body>
     #|  <header class="chrome-shell top">
@@ -131,7 +131,6 @@ fn main {
     #|    <section class="updates shell" id="feature-title" aria-labelledby="updates-title">
     $|      <div class="updates-controls"><h2 id="updates-title">\{localized(locale, "最近动态", "Latest updates", "最新情報")}</h2>
     $|        <fieldset><legend class="updates-visually-hidden">\{localized(locale, "切换文章", "Select an article", "記事を切り替える")}</legend><label><input type="radio" name="updates-slide" value="1" checked><span>01</span></label><label><input type="radio" name="updates-slide" value="2"><span>02</span></label></fieldset>
-    $|        <button type="button" class="updates-toggle" hidden data-play="\{localized(locale, "播放轮播", "Play slideshow", "自動再生する")}" data-pause="\{localized(locale, "暂停轮播", "Pause slideshow", "自動再生を停止")}"></button>
     #|      </div>
     #|      <article class="feature" data-slide="1">
     $|      <img class="feature-logo" src="./news-moonbit-downloads.jpg" alt="\{localized(locale, "MoonBit 累计下载突破 1060 万，月比特科技成立", "MoonBit reaches 10.6 million downloads; Yuebite Technology is founded", "MoonBit の累計ダウンロード数が1,060万を突破、月比特科技が設立")}">
@@ -146,23 +145,12 @@ fn main {
     #|      {
     #|        const updates = document.getElementById('feature-title');
     #|        const slides = Array.from(updates.querySelectorAll('input[name="updates-slide"]'));
-    #|        const toggle = updates.querySelector('.updates-toggle');
     #|        const motion = matchMedia('(prefers-reduced-motion: reduce)');
-    #|        let timer;
-    #|        function setPlaying(playing) {
-    #|          clearInterval(timer);
-    #|          timer = undefined;
-    #|          toggle.textContent = playing ? toggle.dataset.pause : toggle.dataset.play;
-    #|          if (playing) timer = setInterval(() => {
-    #|            if (document.hidden || updates.matches(':hover') || updates.contains(document.activeElement)) return;
-    #|            const current = slides.findIndex(slide => slide.checked);
-    #|            slides[(current + 1) % slides.length].checked = true;
-    #|          }, 6000);
-    #|        }
-    #|        toggle.addEventListener('click', () => setPlaying(timer === undefined));
-    #|        motion.addEventListener('change', () => setPlaying(!motion.matches));
-    #|        setPlaying(!motion.matches);
-    #|        toggle.hidden = false;
+    #|        setInterval(() => {
+    #|          if (motion.matches || document.hidden || updates.matches(':hover') || updates.contains(document.activeElement)) return;
+    #|          const current = slides.findIndex(slide => slide.checked);
+    #|          slides[(current + 1) % slides.length].checked = true;
+    #|        }, 6000);
     #|      }
     #|    </script>
     #|    <section class="shell seekmoon-cta" aria-labelledby="seekmoon-cta-title">
@@ -336,7 +324,11 @@ fn main {
     #|    <div class="footer">
     $|    <nav class="footer-links" aria-label="\{localized(locale, "社区链接", "Community links", "コミュニティリンク")}">
     $|      <a href="https://github.com/moonbit-community" aria-label="\{localized(locale, "MoonBit 开源社区", "MoonBit open-source community", "MoonBit オープンソースコミュニティ")} GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.14.08 1.73 1.16 1.73 1.16 1 .73 1.79.84 3.26.53.1-.73.39-1.23.71-1.51-2.5-.29-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.29-.5-1.43.11-2.98 0 0 .95-.3 3.09 1.15a10.78 10.78 0 0 1 5.63 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.55.23 2.69.12 2.98.72.79 1.15 1.79 1.15 3.02 0 4.32-2.63 5.27-5.14 5.55.4.35.76 1.03.76 2.08v3.51c0 .3.2.65.77.54A11.25 11.25 0 0 0 12 .75Z"/></svg></a>
-    $|      <a href="./contact\{suffix}.html#wechat" aria-label="\{localized(locale, "微信公众号", "WeChat Official Account", "WeChat 公式アカウント")}" title="\{localized(locale, "微信公众号", "WeChat Official Account", "WeChat 公式アカウント")}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 5C7 1 1 5 2 10c0 2 1 3 2 4l-1 3 4-2h2m7-7c-4 0-7 3-7 6s3 6 7 6l2-.3 3 1.3-.5-3c1-1 1.5-2 1.5-4 0-3-2.7-6-6-6Z"/><path d="M6 8h1m3 0h1m2 5h1m3 0h1"/></svg></a>
+    #|      <div class="footer-wechat">
+    $|        <button type="button" aria-label="\{localized(locale, "微信公众号二维码", "WeChat QR code", "WeChat のQRコード")}" popovertarget="footer-wechat-code"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 5C7 1 1 5 2 10c0 2 1 3 2 4l-1 3 4-2h2m7-7c-4 0-7 3-7 6s3 6 7 6l2-.3 3 1.3-.5-3c1-1 1.5-2 1.5-4 0-3-2.7-6-6-6Z"/><path d="M6 8h1m3 0h1m2 5h1m3 0h1"/></svg></button>
+    $|        <figure class="footer-wechat-preview" aria-hidden="true"><img src="./wechat-yuebite.png" alt="" width="148" height="148"><figcaption>\{brand}</figcaption></figure>
+    $|        <figure class="footer-wechat-popover" id="footer-wechat-code" popover><img src="./wechat-yuebite.png" alt="\{localized(locale, "微信公众号二维码", "WeChat QR code", "WeChat のQRコード")}" width="148" height="148"><figcaption>\{brand}</figcaption></figure>
+    #|      </div>
     $|      <a href="https://www.xiaohongshu.com/user/profile/636b072f000000001f01c84a" aria-label="\{localized(locale, "小红书", "RedNote", "小紅書")}" title="\{localized(locale, "小红书", "RedNote", "小紅書")}"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5" fill="currentColor"/><text x="12" y="15" text-anchor="middle" font-size="7" font-weight="700" fill="white">\{localized(locale, "小红书", "RedNote", "小紅書")}</text></svg></a>
     $|      <a href="https://www.zhihu.com/people/moonbit" aria-label="\{localized(locale, "MoonBit 知乎主页", "MoonBit on Zhihu", "MoonBit の知乎プロフィール")}" title="\{localized(locale, "知乎", "Zhihu", "知乎")}"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5" fill="currentColor"/><text x="12" y="17" text-anchor="middle" font-size="15" font-weight="700" fill="white">知</text></svg></a>
     $|      <a href="https://x.com/Moonbitlang" aria-label="\{localized(locale, "MoonBit 的 X 账号", "MoonBit on X", "MoonBit の X アカウント")}" title="X"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 3h4l14 18h-4L3 3Zm17 0-7 8m-2 2-7 8"/></svg></a>
