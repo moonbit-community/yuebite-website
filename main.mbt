@@ -111,7 +111,7 @@ fn main {
     #|  <header class="chrome-shell top">
     $|    <a class="brand" href="\{home_url}"><img src="./moonbit-wordmark.png" alt="MoonBit" width="677" height="173"></a>
     $|    <nav aria-label="\{localized(locale, "主导航", "Main navigation", "メインナビゲーション")}">
-    $|      <a href="https://seekmoon.moonbitlang.com/cloud">SeekMoon</a>
+    $|      <a href="https://seekmoon.moonbitlang.com/cloud">\{localized(locale, "SeekMoon 智能体", "SeekMoon Agent", "SeekMoon エージェント")}</a>
     $|      <a href="\{developer_url}">\{language_label}</a>
     $|      <details class="ecosystem-nav"><summary>\{ecosystem_nav_label}</summary><div class="ecosystem-menu"><a href="https://mooncakes.io/">Mooncakes ↗</a><a href="./education\{suffix}.html">\{education_label}</a><a href="./competitions\{suffix}.html">\{competitions_label}</a><a href="./events\{suffix}.html">\{events_label}</a></div></details>
     $|      <a href="\{news_url}"\{news_current}>\{news_label}</a>
@@ -124,9 +124,9 @@ fn main {
     #|    <section class="hero shell" aria-labelledby="headline">
     #|      <div class="hero-text">
     $|        <h1 id="headline">\{brand}</h1>
-    $|        <p class="hero-intro">\{localized(locale, "我们打造 MoonBit 编程语言和 SeekMoon 智能体，帮助开发者写代码，也让更多人把想法做成可用的项目。", "We build the MoonBit programming language and the SeekMoon agent to help developers write code and make it easier for anyone to turn ideas into working projects.", "プログラミング言語 MoonBit と AI エージェント SeekMoon を開発し、コードを書く人を支え、誰もがアイデアを形にできるようにします。")}</p>
+    $|        <p class="hero-intro">\{localized(locale, "我们打造 MoonBit 编程语言和 SeekMoon 智能体，希望让软件创作不再是少数人的专长，让更多人把想象变成改变世界的作品。", "We build the MoonBit programming language and the SeekMoon agent with a vision: a world where more people can create software and turn their ideas into things that change the world.", "私たちはプログラミング言語 MoonBit と AI エージェント SeekMoon を開発し、より多くの人がソフトウェアをつくり、想像を世界を変える作品へと形にできる未来を目指します。")}</p>
     $|        <a class="prompt" href="https://seekmoon.moonbitlang.com/cloud"><span>\{localized(locale, "用 SeekMoon，把想法变成项目", "Turn your ideas into projects with SeekMoon", "SeekMoon でアイデアをプロジェクトに")}</span><span class="prompt-action">\{localized(locale, "试用 SeekMoon", "Try SeekMoon", "SeekMoon を試す")} <span aria-hidden="true">↗</span></span></a>
-    $|        <div class="actions"><a class="secondary" href="\{developer_url}">\{localized(locale, "了解 MoonBit 编程语言", "Explore the MoonBit language", "プログラミング言語 MoonBit を知る")} ↗</a></div>
+    $|        <div class="actions"><a class="secondary" href="\{developer_url}">MoonBit</a><a class="secondary" href="https://mooncakes.io/">Mooncakes</a><a class="secondary" href="./ecosystem\{suffix}.html">\{localized(locale, "开源生态", "Open source", "オープンソース")}</a><a class="secondary" href="./company\{suffix}.html">\{localized(locale, "关于我们", "About us", "私たちについて")}</a></div>
     #|      </div>
     #|    </section>
     #|    <section class="updates shell" id="feature-title" aria-labelledby="updates-title">
@@ -134,11 +134,11 @@ fn main {
     $|        <fieldset><legend class="updates-visually-hidden">\{localized(locale, "切换文章", "Select an article", "記事を切り替える")}</legend><label><input type="radio" name="updates-slide" value="1" checked><span>01</span></label><label><input type="radio" name="updates-slide" value="2"><span>02</span></label></fieldset>
     #|      </div>
     #|      <article class="feature" data-slide="1">
-    $|      <img class="feature-logo" src="./news-moonbit-downloads.jpg" alt="\{localized(locale, "MoonBit 累计下载突破 1060 万，月比特科技成立", "MoonBit reaches 10.6 million downloads; Yuebite Technology is founded", "MoonBit の累計ダウンロード数が1,060万を突破、月比特科技が設立")}">
+    $|      <img class="feature-logo" src="./news-carousel-downloads.jpg" alt="\{localized(locale, "MoonBit 累计下载突破 1060 万，月比特科技成立", "MoonBit reaches 10.6 million downloads; Yuebite Technology is founded", "MoonBit の累計ダウンロード数が1,060万を突破、月比特科技が設立")}">
     $|      <div class="feature-copy"><p class="eyebrow">\{localized(locale, "微信公众号", "WeChat Official Account", "WeChat 公式アカウント")}</p><h3>\{localized(locale, "MoonBit 累计下载突破 1060 万", "MoonBit passes 10.6 million downloads", "MoonBit の累計ダウンロード数が1,060万を突破")}</h3><a href="https://mp.weixin.qq.com/s/Sd7Zv89bSiz7aZOEEi_KMg">\{localized(locale, "阅读公众号文章", "Read the article in Chinese", "中国語の記事を読む")} ↗</a></div>
     #|      </article>
     #|      <article class="feature" data-slide="2">
-    $|        <img class="feature-logo" src="./news-moonbit-meetup.jpg" alt="\{localized(locale, "MoonBit 1.0 发布 Meetup 暨黑客松季度决赛", "MoonBit 1.0 launch meetup and hackathon finals", "MoonBit 1.0 発表ミートアップとハッカソン決勝")}">
+    $|        <img class="feature-logo" src="./news-carousel-meetup.jpg" alt="\{localized(locale, "MoonBit 1.0 发布 Meetup 暨黑客松季度决赛", "MoonBit 1.0 launch meetup and hackathon finals", "MoonBit 1.0 発表ミートアップとハッカソン決勝")}">
     $|        <div class="feature-copy"><p class="eyebrow">\{localized(locale, "微信公众号", "WeChat Official Account", "WeChat 公式アカウント")}</p><h3>\{localized(locale, "MoonBit 1.0 发布 Meetup", "MoonBit 1.0 launch meetup", "MoonBit 1.0 発表ミートアップ")}</h3><a href="https://mp.weixin.qq.com/s/cnsj6Z1V9PCEKnb3wbSv0g">\{localized(locale, "阅读公众号文章", "Read the article in Chinese", "中国語の記事を読む")} ↗</a></div>
     #|      </article>
     #|    </section>
@@ -247,15 +247,14 @@ fn main {
     #|    </section>
     #|    <section class="shell section" aria-labelledby="roadmap">
     $|      <h2 id="roadmap">\{localized(locale, "公司发展路线图", "Company roadmap", "会社のロードマップ")}</h2>
-    $|      <p>\{localized(locale, "MoonBit 与 SeekMoon 的公开里程碑。", "Public milestones for MoonBit and SeekMoon.", "MoonBit と SeekMoon の公開マイルストーン。")}</p>
+    $|      <p>\{localized(locale, "MoonBit 与月比特科技的发展里程碑。", "Milestones for MoonBit and Yuebite Technology.", "MoonBit と月比特科技の歩み。")}</p>
     #|      <div class="roadmap-scroll" role="region" aria-labelledby="roadmap" tabindex="0"><ol class="roadmap-list">
-    $|        <li><time datetime="2022-09-19">\{localized(locale, "2022 年 9 月 19 日", "Sep 19, 2022", "2022年9月19日")}</time><h3><a href="https://www.moonbitlang.cn/blog/moonbit-third-anniversary">\{localized(locale, "MoonBit 项目正式立项", "MoonBit project begins", "MoonBit プロジェクトが正式に始動")}</a></h3></li>
-    $|        <li><time datetime="2023-08-18">\{localized(locale, "2023 年 8 月 18 日", "Aug 18, 2023", "2023年8月18日")}</time><h3><a href="https://www.moonbitlang.com/blog/first-announce">\{localized(locale, "MoonBit 首次公开发布", "MoonBit first public release", "MoonBit を初公開")}</a></h3></li>
-    $|        <li><time datetime="2025-06-18">\{localized(locale, "2025 年 6 月 18 日", "Jun 18, 2025", "2025年6月18日")}</time><h3><a href="https://www.moonbitlang.cn/about-us/">\{localized(locale, "MoonBit Beta 发布", "MoonBit Beta released", "MoonBit Beta をリリース")}</a></h3></li>
-    $|        <li><time datetime="2026-02-09">\{localized(locale, "2026 年 2 月 9 日", "Feb 9, 2026", "2026年2月9日")}</time><h3><a href="https://www.moonbitlang.com/blog/moonbit-0-8-0-release">\{localized(locale, "MoonBit 0.8.0 发布", "MoonBit 0.8.0 released", "MoonBit 0.8.0 をリリース")}</a></h3></li>
-    $|        <li><time datetime="2026-09-01">\{localized(locale, "2026 年 9 月 1 日", "Sep 1, 2026", "2026年9月1日")}</time><h3><a href="https://www.moonbitlang.com/blog/seekmoon-from-ide-to-ade">\{localized(locale, "SeekMoon 公开介绍 Agent 开发环境", "SeekMoon introduces its Agent Development Environment", "SeekMoon がエージェント開発環境を紹介")}</a></h3></li>
+    $|        <li><time datetime="2022-09">\{localized(locale, "2022 年 9 月", "Sep 2022", "2022年9月")}</time><h3><a href="https://www.moonbitlang.cn/blog/moonbit-third-anniversary">\{localized(locale, "MoonBit 项目正式立项", "MoonBit project begins", "MoonBit プロジェクトが正式に始動")}</a></h3></li>
+    $|        <li><time datetime="2023-08">\{localized(locale, "2023 年 8 月", "Aug 2023", "2023年8月")}</time><h3><a href="https://www.moonbitlang.com/blog/first-announce">\{localized(locale, "MoonBit 首次公开发布", "MoonBit first public release", "MoonBit を初公開")}</a></h3></li>
+    $|        <li><time datetime="2025-06">\{localized(locale, "2025 年 6 月", "Jun 2025", "2025年6月")}</time><h3><a href="https://www.moonbitlang.cn/about-us/">\{localized(locale, "MoonBit Beta 发布", "MoonBit Beta released", "MoonBit Beta をリリース")}</a></h3></li>
+    $|        <li><time datetime="2026-02">\{localized(locale, "2026 年 2 月", "Feb 2026", "2026年2月")}</time><h3><a href="https://www.moonbitlang.com/blog/moonbit-0-8-0-release">\{localized(locale, "MoonBit 0.8.0 发布", "MoonBit 0.8.0 released", "MoonBit 0.8.0 をリリース")}</a></h3></li>
     $|        <li><h3>\{localized(locale, "深圳月比特科技有限公司成立", "Yuebite Technology is founded in Shenzhen", "深圳月比特科技有限公司を設立")}</h3></li>
-    $|        <li><time datetime="2026-11-28">\{localized(locale, "2026 年 11 月 28 日 · 计划", "Nov 28, 2026 · Planned", "2026年11月28日・予定")}</time><h3>\{localized(locale, "MoonBit 1.0 发布 Meetup", "MoonBit 1.0 launch meetup", "MoonBit 1.0 発表ミートアップ")}</h3></li>
+    $|        <li><time datetime="2026-11">\{localized(locale, "2026 年 11 月 · 计划", "Nov 2026 · Planned", "2026年11月・予定")}</time><h3>\{localized(locale, "MoonBit 1.0 发布 Meetup", "MoonBit 1.0 launch meetup", "MoonBit 1.0 発表ミートアップ")}</h3></li>
     #|      </ol></div>
     #|    </section>
     #|    <section class="shell section" aria-labelledby="careers">
@@ -292,8 +291,7 @@ fn main {
     #|  <main id="home" class="contact-page">
     #|    <div class="shell contact-layout">
     #|      <section aria-labelledby="contact-title">
-    $|        <p class="eyebrow">\{localized(locale, "联系我们", "Contact us", "お問い合わせ")}</p>
-    $|        <h1 id="contact-title">\{localized(locale, "和月比特科技<br>聊聊你的项目。", "Tell us about<br>your project.", "あなたのプロジェクトについて<br>お聞かせください。")}</h1>
+    $|        <h1 id="contact-title" class="eyebrow">\{contact_label}</h1>
     $|        <p>\{localized(locale, "想了解如何在团队中使用 MoonBit 或 SeekMoon？欢迎就产品试用、技术交流与合作联系我们。", "Interested in using MoonBit or SeekMoon with your team? Get in touch about trials, technical questions, or partnerships.", "チームで MoonBit や SeekMoon を使ってみませんか。試用、技術相談、協業についてお気軽にお問い合わせください。")}</p>
     #|      </section>
     #|      <section class="contact-card" aria-labelledby="contact-card-title">
@@ -302,21 +300,13 @@ fn main {
     #|        <input id="work-email" type="email" autocomplete="email" aria-describedby="contact-note" disabled>
     $|        <p id="contact-note">\{localized(locale, "在线表单暂未开放。开源项目相关问题可前往 GitHub 社区交流，请勿公开填写个人信息。", "The online form is not available yet. For open-source questions, visit GitHub. Do not share personal information publicly.", "オンラインフォームは準備中です。オープンソースに関する質問は GitHub へ。個人情報は公開しないでください。")}</p>
     $|        <a class="secondary" href="https://github.com/moonbit-community">\{localized(locale, "前往 GitHub 社区", "Visit the GitHub community", "GitHub コミュニティへ")} ↗</a>
-    #|        <section class="wechat-accounts" id="wechat" aria-labelledby="wechat-title">
-    $|          <h3 id="wechat-title">\{localized(locale, "微信公众号", "WeChat Official Accounts", "WeChat 公式アカウント")}</h3>
-    $|          <p>\{localized(locale, "打开微信扫一扫，关注公众号。", "Scan either QR code in WeChat to follow the account.", "WeChat で QR コードを読み取ってフォローできます。")}</p>
-    #|          <div class="wechat-codes">
-    $|            <figure><img src="./wechat-yuebite.png" alt="QR code" width="516" height="516"><figcaption>\{localized(locale, "月比特科技", "Yuebite Technology", "月比特科技")}</figcaption></figure>
-    $|            <figure><img src="./wechat-moonbit.png" alt="QR code" width="516" height="516"><figcaption>\{localized(locale, "MoonBit 社区", "MoonBit Community", "MoonBit コミュニティ")}</figcaption></figure>
-    #|          </div>
-    #|        </section>
     #|      </section>
     #|    </div>
     #|  </main>
   let footer =
     #|  <footer class="chrome-shell">
     $|    <nav class="footer-index" aria-label="\{localized(locale, "网站索引", "Site index", "サイトマップ")}">
-    $|      <div><h2>SeekMoon</h2><ul><li><a href="https://seekmoon.moonbitlang.com/cloud">SeekMoon Cloud ↗</a></li></ul></div>
+    $|      <div><h2>\{localized(locale, "SeekMoon 智能体", "SeekMoon Agent", "SeekMoon エージェント")}</h2><ul><li><a href="https://seekmoon.moonbitlang.com/cloud">SeekMoon Cloud ↗</a></li></ul></div>
     $|      <div><h2>\{language_label}</h2><ul><li><a href="\{developer_url}">\{localized(locale, "MoonBit 官网", "MoonBit website", "MoonBit 公式サイト")} ↗</a></li></ul></div>
     $|      <div><h2>\{ecosystem_nav_label}</h2><ul><li><a href="https://mooncakes.io/">Mooncakes ↗</a></li><li><a href="./education\{suffix}.html">\{education_label}</a></li><li><a href="./competitions\{suffix}.html">\{competitions_label}</a></li><li><a href="./events\{suffix}.html">\{events_label}</a></li><li><a href="./ecosystem\{suffix}.html">\{ecosystem_label(locale)}</a></li></ul></div>
     $|      <div><h2><a href="\{news_url}">\{news_label}</a></h2></div>
@@ -330,6 +320,7 @@ fn main {
     $|        <figure class="footer-wechat-preview" aria-hidden="true"><img src="./wechat-yuebite.png" alt="" width="148" height="148"><figcaption>\{brand}</figcaption></figure>
     $|        <figure class="footer-wechat-popover" id="footer-wechat-code" popover><img src="./wechat-yuebite.png" alt="\{localized(locale, "微信公众号二维码", "WeChat QR code", "WeChat のQRコード")}" width="148" height="148"><figcaption>\{brand}</figcaption></figure>
     #|      </div>
+    $|      <a href="https://discord.gg/FyXNY8cpyJ" aria-label="MoonBit Discord" title="Discord"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.3 4.4a19 19 0 0 0-4.7-1.5l-.6 1.2a17 17 0 0 0-6 0l-.6-1.2a19 19 0 0 0-4.7 1.5A20 20 0 0 0 .2 17.8a19 19 0 0 0 5.8 3l1.2-2a12 12 0 0 1-1.8-.9l.4-.3a15 15 0 0 0 12.4 0l.4.3a12 12 0 0 1-1.8.9l1.2 2a19 19 0 0 0 5.8-3 20 20 0 0 0-3.5-13.4ZM8.1 15.4c-1.2 0-2.1-1.1-2.1-2.4s.9-2.4 2.1-2.4 2.1 1.1 2.1 2.4-.9 2.4-2.1 2.4Zm7.8 0c-1.2 0-2.1-1.1-2.1-2.4s.9-2.4 2.1-2.4 2.1 1.1 2.1 2.4-.9 2.4-2.1 2.4Z"/></svg></a>
     $|      <a href="https://www.xiaohongshu.com/user/profile/636b072f000000001f01c84a" aria-label="\{localized(locale, "小红书", "RedNote", "小紅書")}" title="\{localized(locale, "小红书", "RedNote", "小紅書")}"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5" fill="currentColor"/><text x="12" y="15" text-anchor="middle" font-size="7" font-weight="700" fill="white">\{localized(locale, "小红书", "RedNote", "小紅書")}</text></svg></a>
     $|      <a href="https://www.zhihu.com/people/moonbit" aria-label="\{localized(locale, "MoonBit 知乎主页", "MoonBit on Zhihu", "MoonBit の知乎プロフィール")}" title="\{localized(locale, "知乎", "Zhihu", "知乎")}"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5" fill="currentColor"/><text x="12" y="17" text-anchor="middle" font-size="15" font-weight="700" fill="white">知</text></svg></a>
     $|      <a href="https://x.com/Moonbitlang" aria-label="\{localized(locale, "MoonBit 的 X 账号", "MoonBit on X", "MoonBit の X アカウント")}" title="X"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 3h4l14 18h-4L3 3Zm17 0-7 8m-2 2-7 8"/></svg></a>

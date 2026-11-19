@@ -16,4 +16,4 @@ for locale in zh-CN en ja; do
     moon run . --target js --release -- "$@" > "_site/$page$suffix.html"
   done
 done
-cp site.css moonbit-logo.png moonbit-wordmark.png news-moonbit-downloads.jpg news-moonbit-meetup.jpg wechat-yuebite.png wechat-moonbit.png founder-hongbo-zhang.png _site/
+cp site.css moonbit-logo.png moonbit-wordmark.png news-moonbit-downloads.jpg news-moonbit-meetup.jpg news-carousel-downloads.jpg news-carousel-meetup.jpg wechat-yuebite.png wechat-moonbit.png founder-hongbo-zhang.png _site/

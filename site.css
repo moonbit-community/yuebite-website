@@ -50,16 +50,10 @@ a:focus-visible{outline:2px solid #7751cf;outline-offset:5px}
 @media(max-width:680px){.founder-profile{grid-template-columns:minmax(0,1fr)}.founder-photo{max-width:200px}}
 .contact-page{background:radial-gradient(ellipse at 70% 0%,#f3dfe5aa,transparent 55%),linear-gradient(#dee0f3,#fff 65%)}
 .contact-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:start;gap:clamp(32px,6vw,92px);padding-block:clamp(56px,9vw,124px)}
-.contact-layout h1{font-size:clamp(2.5rem,5.5vw,5rem);line-height:1.1;margin:14px 0 24px}
 .contact-layout p:not(.eyebrow){color:var(--muted)}
 .contact-card{background:var(--paper);padding:clamp(22px,4vw,44px);border-radius:14px;box-shadow:0 20px 52px #26204a20}
 .contact-card label{display:block;margin-bottom:8px}
 .contact-card input{width:100%;height:48px;border:1px solid var(--line);border-radius:6px;background:#f7f7f7;margin-bottom:14px}
-.wechat-accounts{margin-top:28px;padding-top:24px;border-top:1px solid var(--line);scroll-margin-top:24px}
-.wechat-accounts h3{margin:0 0 6px}
-.wechat-codes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;text-align:center}
-.wechat-codes figure{margin:0}
-.wechat-codes img{display:block;width:min(100%,172px);height:auto;margin:0 auto 8px;border:1px solid var(--line);border-radius:8px}
 @media(max-width:760px){.contact-layout{grid-template-columns:1fr}}
 .eyebrow{color:var(--accent);font-size:.78rem;letter-spacing:.16em;font-weight:650;margin:0}
 h1,h2,p{margin-top:0}
