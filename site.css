@@ -6,15 +6,19 @@ a:focus-visible{outline:2px solid #7751cf;outline-offset:5px}
 .shell{width:min(1120px,calc(100% - 80px));margin-inline:auto}
 .top,.footer{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:20px}
 .chrome-shell{width:calc(100% - 7vw);margin-inline:auto}
-.top{justify-content:flex-start;gap:clamp(22px,3vw,46px);padding-block:12px}
-.top nav{justify-content:flex-start;gap:clamp(16px,2.2vw,34px)}
-.top nav a[aria-current="page"]{text-decoration:underline;text-underline-offset:5px}
+.top{justify-content:flex-start;gap:clamp(16px,2vw,28px);padding-block:12px;position:relative;z-index:3}
+.top nav{align-items:center;justify-content:flex-start;gap:6px}
+.top nav > a,.ecosystem-nav summary{padding:6px 10px;border-radius:8px;white-space:nowrap}
+.top nav > a:hover,.ecosystem-nav summary:hover,.ecosystem-nav[open] summary,.top nav > a[aria-current="page"]{background:#f5f5f5;text-decoration:none}
 .ecosystem-nav{position:relative}
-.ecosystem-nav summary{cursor:pointer}
+.ecosystem-nav summary{display:flex;align-items:center;gap:8px;cursor:pointer;list-style:none}
+.ecosystem-nav summary::-webkit-details-marker{display:none}
+.ecosystem-nav summary::after{content:"";width:5px;height:5px;border:solid currentColor;border-width:0 1px 1px 0;transform:translateY(-2px) rotate(45deg);opacity:.65}
+.ecosystem-nav[open] summary::after{transform:translateY(1px) rotate(225deg)}
 .ecosystem-nav summary:focus-visible{outline:2px solid #7751cf;outline-offset:5px}
 .ecosystem-menu{position:absolute;z-index:2;inset-block-start:calc(100% + 8px);inset-inline-start:0;min-width:140px;padding:6px;border:1px solid var(--line);border-radius:12px;background:var(--paper);box-shadow:0 8px 24px #00000014}
 .ecosystem-menu a{display:block;padding:8px 12px;border-radius:8px;white-space:nowrap}
-.ecosystem-menu a:hover,.ecosystem-menu a:focus-visible{background:#f5f5f5}
+.top .ecosystem-menu a:hover,.ecosystem-menu a:focus-visible{background:#f5f5f5;text-decoration:none}
 .nav-actions{display:flex;align-items:center;gap:clamp(10px,2vw,24px);margin-inline-start:auto;font-size:.92rem;white-space:nowrap}
 .nav-action{display:inline-block;background:#0d0d0d;color:#fff;padding:8px 16px;border-radius:999px;white-space:nowrap}
 .brand{display:inline-flex;align-items:center;flex-shrink:0}
@@ -52,11 +56,15 @@ h1{font-size:clamp(1.75rem,4vw,2.9rem);line-height:1.2;letter-spacing:-.045em;fo
 .actions{align-items:center;gap:9px}
 .secondary{display:inline-block;padding:8px 14px;border:1px solid var(--line);border-radius:999px;box-shadow:0 2px 5px #00000008}
 .feature{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"copy logo";align-items:center;min-height:350px;border-radius:24px;background:radial-gradient(circle at 75% 50%,#faf8ff 0 19%,transparent 19.2%),#efedf6}
-.feature-logo{grid-area:logo;justify-self:center;width:clamp(145px,19vw,220px);height:auto;margin-block:24px}
+.feature-logo{grid-area:logo;justify-self:center;width:min(84%,380px);height:auto;aspect-ratio:1;object-fit:contain;border-radius:16px;margin-block:24px}
+.job{padding:24px 0;border-bottom:1px solid var(--line)}
+.job h3{margin-top:0}
+.job summary{cursor:pointer;font-weight:600}
 .feature-copy{grid-area:copy;padding:clamp(24px,5vw,64px)}
 .feature h3{margin:8px 0 12px;font-size:clamp(2.2rem,5vw,4rem);font-weight:600;letter-spacing:-.04em}
-.updates-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
-.updates-controls h2{margin:0}
+.updates-controls{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:12px}
+.updates-controls h2{margin:0 auto 0 0}
+.updates-toggle{font:inherit;font-size:.85rem;color:var(--accent);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer}
 .updates-controls fieldset{margin:0;border:0;padding:0;font-size:.85rem}
 .updates-controls label{display:inline-flex;align-items:center;gap:4px;padding:4px 8px;cursor:pointer}
 .updates:not(:has(input[value="2"]:checked)) [data-slide="2"],.updates:has(input[value="2"]:checked) [data-slide="1"]{display:none}

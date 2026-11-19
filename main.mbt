@@ -70,12 +70,21 @@ fn main {
   let contact = args.contains("--contact")
   let locale = if args.contains("--en") { "en" } else if args.contains("--ja") { "ja" } else { "zh-CN" }
   let suffix = if locale == "zh-CN" { "" } else { "-" + locale }
-  let page_name = if contact { "contact" } else if company { "company" } else { "index" }
+  let page_name = if contact { "contact" } else if company { "company" } else if args.contains("--education") { "education" } else if args.contains("--competitions") { "competitions" } else if args.contains("--ecosystem") { "ecosystem" } else { "index" }
   let home_url = if suffix == "" { "./" } else { "./index" + suffix + ".html" }
   let brand = localized(locale, "月比特科技", "Yuebite Technology", "月比特科技")
   let about_label = localized(locale, "关于我们", "About us", "私たちについて")
   let contact_label = localized(locale, "联系我们", "Contact us", "お問い合わせ")
-  let title = if contact { contact_label + " | " + brand } else if company { about_label + " | " + brand } else { brand }
+  let education_label = localized(locale, "教育", "Education", "教育")
+  let competitions_label = localized(locale, "赛事", "Competitions", "コンテスト")
+  let title = match page_name {
+    "contact" => contact_label + " | " + brand
+    "company" => about_label + " | " + brand
+    "education" => education_label + " | " + brand
+    "competitions" => competitions_label + " | " + brand
+    "ecosystem" => ecosystem_label(locale) + " | " + brand
+    _ => brand
+  }
   let company_current = if company { " aria-current=\"page\"" } else { "" }
   let language_links = language_options(locale, page_name)
   let developer_url = moonbit_site(locale)
@@ -96,7 +105,7 @@ fn main {
     $|    <nav aria-label="\{localized(locale, "主导航", "Main navigation", "メインナビゲーション")}">
     $|      <a href="https://seekmoon.moonbitlang.com/cloud">SeekMoon</a>
     $|      <a href="\{developer_url}">\{localized(locale, "MoonBit 编程语言", "MoonBit Programming Language", "MoonBit プログラミング言語")}</a>
-    $|      <details class="ecosystem-nav"><summary>\{localized(locale, "生态", "Ecosystem", "エコシステム")}</summary><div class="ecosystem-menu"><a href="\{developer_url}">MoonBit ↗</a><a href="https://mooncakes.io/">Mooncakes ↗</a><a href="\{home_url}#education">\{localized(locale, "教育", "Education", "教育")}</a><a href="\{home_url}#competitions">\{localized(locale, "赛事", "Competitions", "コンテスト")}</a></div></details>
+    $|      <details class="ecosystem-nav"><summary>\{localized(locale, "生态", "Ecosystem", "エコシステム")}</summary><div class="ecosystem-menu"><a href="\{developer_url}">MoonBit ↗</a><a href="https://mooncakes.io/">Mooncakes ↗</a><a href="./education\{suffix}.html">\{education_label}</a><a href="./competitions\{suffix}.html">\{competitions_label}</a></div></details>
     $|      <a href="./company\{suffix}.html"\{company_current}>\{about_label}</a>
     #|    </nav>
     $|    <div class="nav-actions"><a href="./contact\{suffix}.html">\{localized(locale, "联系我们", "Contact us", "お問い合わせ")}</a><a class="nav-action" href="https://seekmoon.moonbitlang.com/cloud">\{localized(locale, "试用 SeekMoon", "Try SeekMoon", "SeekMoon を試す")} ↗</a></div>
@@ -107,25 +116,52 @@ fn main {
     #|      <div class="hero-text">
     $|        <h1 id="headline">\{localized(locale, "今天想用 SeekMoon 做什么？", "What will you build with SeekMoon today?", "今日は SeekMoon で何を作りますか？")}</h1>
     $|        <a class="prompt" href="https://seekmoon.moonbitlang.com/cloud"><span>\{localized(locale, "用 SeekMoon，把想法变成项目", "Turn your ideas into projects with SeekMoon", "SeekMoon でアイデアをプロジェクトに")}</span><span class="prompt-action">\{localized(locale, "打开云端工作台", "Open the cloud workspace", "クラウドワークスペースを開く")} <span aria-hidden="true">↗</span></span></a>
-    $|        <div class="actions"><a class="secondary" href="\{developer_url}">MoonBit</a><a class="secondary" href="https://mooncakes.io/">Mooncakes</a><a class="secondary" href="#technology">\{localized(locale, "开源生态", "Open source", "オープンソース")}</a><a class="secondary" href="./company\{suffix}.html">\{localized(locale, "关于我们", "About us", "私たちについて")}</a></div>
+    $|        <div class="actions"><a class="secondary" href="\{developer_url}">MoonBit</a><a class="secondary" href="https://mooncakes.io/">Mooncakes</a><a class="secondary" href="./ecosystem\{suffix}.html">\{localized(locale, "开源生态", "Open source", "オープンソース")}</a><a class="secondary" href="./company\{suffix}.html">\{localized(locale, "关于我们", "About us", "私たちについて")}</a></div>
     #|      </div>
     #|    </section>
     #|    <section class="updates shell" id="feature-title" aria-labelledby="updates-title">
     $|      <div class="updates-controls"><h2 id="updates-title">\{localized(locale, "最近动态", "Latest updates", "最新情報")}</h2>
     $|        <fieldset><legend>\{localized(locale, "切换文章", "Select an article", "記事を切り替える")}</legend><label><input type="radio" name="updates-slide" value="1" checked> 1</label><label><input type="radio" name="updates-slide" value="2"> 2</label></fieldset>
+    $|        <button type="button" class="updates-toggle" hidden data-play="\{localized(locale, "播放轮播", "Play slideshow", "自動再生する")}" data-pause="\{localized(locale, "暂停轮播", "Pause slideshow", "自動再生を停止")}"></button>
     #|      </div>
     #|      <article class="feature" data-slide="1">
-    $|      <img class="feature-logo" src="./moonbit-logo.png" alt="\{localized(locale, "MoonBit 官方标志", "Official MoonBit logo", "MoonBit 公式ロゴ")}" width="508" height="652">
-    $|      <div class="feature-copy"><p class="eyebrow">\{localized(locale, "微信公众号", "WeChat Official Account", "WeChat 公式アカウント")}</p><h3>\{localized(locale, "公众号动态 01", "WeChat update 01", "WeChat のお知らせ 01")}</h3><a href="https://mp.weixin.qq.com/s/Sd7Zv89bSiz7aZOEEi_KMg">\{localized(locale, "阅读公众号文章", "Read the article in Chinese", "中国語の記事を読む")} ↗</a></div>
+    $|      <img class="feature-logo" src="./news-moonbit-downloads.jpg" alt="\{localized(locale, "MoonBit 累计下载突破 1060 万，月比特科技成立", "MoonBit reaches 10.6 million downloads; Yuebite Technology is founded", "MoonBit の累計ダウンロード数が1,060万を突破、月比特科技が設立")}">
+    $|      <div class="feature-copy"><p class="eyebrow">\{localized(locale, "微信公众号", "WeChat Official Account", "WeChat 公式アカウント")}</p><h3>\{localized(locale, "MoonBit 累计下载突破 1060 万", "MoonBit passes 10.6 million downloads", "MoonBit の累計ダウンロード数が1,060万を突破")}</h3><a href="https://mp.weixin.qq.com/s/Sd7Zv89bSiz7aZOEEi_KMg">\{localized(locale, "阅读公众号文章", "Read the article in Chinese", "中国語の記事を読む")} ↗</a></div>
     #|      </article>
     #|      <article class="feature" data-slide="2">
-    #|        <img class="feature-logo" src="./moonbit-logo.png" alt="" width="508" height="652">
-    $|        <div class="feature-copy"><p class="eyebrow">\{localized(locale, "微信公众号", "WeChat Official Account", "WeChat 公式アカウント")}</p><h3>\{localized(locale, "公众号动态 02", "WeChat update 02", "WeChat のお知らせ 02")}</h3><a href="https://mp.weixin.qq.com/s/cnsj6Z1V9PCEKnb3wbSv0g">\{localized(locale, "阅读公众号文章", "Read the article in Chinese", "中国語の記事を読む")} ↗</a></div>
+    $|        <img class="feature-logo" src="./news-moonbit-meetup.jpg" alt="\{localized(locale, "MoonBit 1.0 发布 Meetup 暨黑客松季度决赛", "MoonBit 1.0 launch meetup and hackathon finals", "MoonBit 1.0 発表ミートアップとハッカソン決勝")}">
+    $|        <div class="feature-copy"><p class="eyebrow">\{localized(locale, "微信公众号", "WeChat Official Account", "WeChat 公式アカウント")}</p><h3>\{localized(locale, "MoonBit 1.0 发布 Meetup", "MoonBit 1.0 launch meetup", "MoonBit 1.0 発表ミートアップ")}</h3><a href="https://mp.weixin.qq.com/s/cnsj6Z1V9PCEKnb3wbSv0g">\{localized(locale, "阅读公众号文章", "Read the article in Chinese", "中国語の記事を読む")} ↗</a></div>
     #|      </article>
     #|    </section>
+    #|    <script>
+    #|      {
+    #|        const updates = document.getElementById('feature-title');
+    #|        const slides = Array.from(updates.querySelectorAll('input[name="updates-slide"]'));
+    #|        const toggle = updates.querySelector('.updates-toggle');
+    #|        const motion = matchMedia('(prefers-reduced-motion: reduce)');
+    #|        let timer;
+    #|        function setPlaying(playing) {
+    #|          clearInterval(timer);
+    #|          timer = undefined;
+    #|          toggle.textContent = playing ? toggle.dataset.pause : toggle.dataset.play;
+    #|          if (playing) timer = setInterval(() => {
+    #|            if (document.hidden || updates.matches(':hover') || updates.contains(document.activeElement)) return;
+    #|            const current = slides.findIndex(slide => slide.checked);
+    #|            slides[(current + 1) % slides.length].checked = true;
+    #|          }, 6000);
+    #|        }
+    #|        toggle.addEventListener('click', () => setPlaying(timer === undefined));
+    #|        motion.addEventListener('change', () => setPlaying(!motion.matches));
+    #|        setPlaying(!motion.matches);
+    #|        toggle.hidden = false;
+    #|      }
+    #|    </script>
+    #|  </main>
+  let ecosystem_page =
+    #|  <main id="home">
     #|    <section class="shell section" id="technology">
     #|      <p class="eyebrow">01 / TECHNOLOGY</p>
-    $|      <h2>\{ecosystem_label(locale)}</h2>
+    $|      <h1>\{ecosystem_label(locale)}</h1>
     $|      <h3>\{localized(locale, "使用案例", "Use cases", "活用事例")}</h3>
     #|      <div class="cards">
     $|        <a href="https://www.moonbitlang.com/updates/2026/09/21/index"><strong>Mooncakes</strong><span>\{localized(locale, "Mooncakes 软件包网站的后端使用 MoonBit 的 Moonback 框架。", "The Mooncakes package registry runs its web backend on Moonback, a MoonBit framework.", "パッケージレジストリ Mooncakes のウェブバックエンドには、MoonBit 製の Moonback が使われています。")}</span><span class="arrow" aria-hidden="true">↗</span></a>
@@ -135,21 +171,23 @@ fn main {
     #|      <div class="cards">
     $|        \{cards}
     #|      </div>
-    $|      <h3 id="education">\{localized(locale, "教育", "Education", "教育")}</h3>
+    #|    </section>
+    #|  </main>
+  let education_page =
+    #|  <main id="home"><section class="shell section">
+    $|      <h1>\{education_label}</h1>
     #|      <div class="cards">
     $|        <a href="https://www.moonbitlang.cn/blog/llvm-backend"><strong>\{localized(locale, "北京大学合作课程", "Peking University course", "北京大学との連携授業")}</strong><span>\{localized(locale, "北京大学研究生课程《编程语言的设计原理》将 MoonBit 纳入教学实践。", "Peking University’s graduate course on programming language design uses MoonBit for hands-on work.", "北京大学の大学院科目「プログラミング言語の設計原理」では、演習に MoonBit を採用しています。")}</span><span class="arrow" aria-hidden="true">↗</span></a>
     $|        <a href="https://www.moonbitlang.cn/events/"><strong>\{localized(locale, "MoonBit 校园行", "MoonBit campus outreach", "MoonBit キャンパス交流")}</strong><span>\{localized(locale, "了解 MoonBit 校园活动和校园大使计划。", "Explore MoonBit campus events and the campus ambassador program.", "MoonBit の学内イベントやキャンパスアンバサダー制度を紹介します。")}</span><span class="arrow" aria-hidden="true">↗</span></a>
     #|      </div>
-    $|      <h3 id="competitions">\{localized(locale, "赛事", "Competitions", "コンテスト")}</h3>
+    #|  </section></main>
+  let competitions_page =
+    #|  <main id="home"><section class="shell section">
+    $|      <h1>\{competitions_label}</h1>
     #|      <div class="cards">
     $|        <a href="https://www.moonbitlang.cn/2025-mgpic"><strong>\{localized(locale, "2025 MoonBit 全球编程创新挑战赛", "2025 MoonBit Global Programming Innovation Challenge", "2025 MoonBit グローバルプログラミングチャレンジ")}</strong><span class="arrow" aria-hidden="true">↗</span></a>
     $|        <a href="https://www.moonbitlang.com/2026-scc"><strong>\{localized(locale, "2026 MoonBit 软件合成挑战赛", "2026 MoonBit Software Synthesis Challenge", "2026 MoonBit ソフトウェア合成チャレンジ")}</strong><span class="arrow" aria-hidden="true">↗</span></a>
     #|      </div>
-    #|    </section>
-    #|    <section class="shell section" id="about">
-    #|      <p class="eyebrow">02 / ABOUT</p>
-    $|      <h2>\{localized(locale, "关于月比特科技", "About Yuebite Technology", "月比特科技について")}</h2>
-    $|      <p class="intro">\{localized(locale, "我们关注编程语言、开发工具与开源生态。欢迎从 MoonBit 开始，了解相关技术并参与社区交流。", "We focus on programming languages, developer tools, and open source. Explore MoonBit and join the community.", "私たちはプログラミング言語、開発ツール、オープンソースに取り組んでいます。MoonBit を使って、技術を学び、コミュニティに参加しましょう。")}</p>
     #|    </section>
     #|  </main>
   let about =
@@ -161,7 +199,6 @@ fn main {
     #|    </section>
     #|    <section class="shell section" aria-labelledby="team">
     $|      <h2 id="team">\{localized(locale, "团队介绍", "Our team", "チーム紹介")}</h2>
-    $|      <p class="intro">\{localized(locale, "我们的工作涵盖编程语言、开发工具和开源生态，希望让开发者更容易把想法变成可用的软件。", "We work on programming languages, developer tools, and open source to help developers turn ideas into usable software.", "プログラミング言語、開発ツール、オープンソースを通じて、開発者がアイデアをソフトウェアにできるよう支援します。")}</p>
     #|      <article class="founder-profile">
     $|        <p class="eyebrow">\{localized(locale, "月比特科技创始人", "Founder of Yuebite Technology", "月比特科技の創業者")}</p>
     $|        <h3>\{localized(locale, "张宏波", "Hongbo Zhang", "張宏波（Hongbo Zhang）")}</h3>
@@ -172,14 +209,43 @@ fn main {
     $|      <h2 id="roadmap">\{localized(locale, "公司发展路线图", "Company roadmap", "会社のロードマップ")}</h2>
     $|      <p>\{localized(locale, "MoonBit 与 SeekMoon 的公开里程碑。", "Public milestones for MoonBit and SeekMoon.", "MoonBit と SeekMoon の公開マイルストーン。")}</p>
     #|      <ol class="roadmap-list">
-    $|        <li><time datetime="2023">\{localized(locale, "2023 年", "2023", "2023年")}</time><h3><a href="https://www.moonbitlang.com/blog/first-announce">\{localized(locale, "MoonBit 首次公开亮相", "MoonBit introduced", "MoonBit を初公開")}</a></h3></li>
+    $|        <li><time datetime="2022-09-19">\{localized(locale, "2022 年 9 月 19 日", "Sep 19, 2022", "2022年9月19日")}</time><h3><a href="https://www.moonbitlang.cn/blog/moonbit-third-anniversary">\{localized(locale, "MoonBit 项目正式立项", "MoonBit project begins", "MoonBit プロジェクトが正式に始動")}</a></h3></li>
+    $|        <li><time datetime="2023-08-18">\{localized(locale, "2023 年 8 月 18 日", "Aug 18, 2023", "2023年8月18日")}</time><h3><a href="https://www.moonbitlang.com/blog/first-announce">\{localized(locale, "MoonBit 首次公开发布", "MoonBit first public release", "MoonBit を初公開")}</a></h3></li>
+    $|        <li><time datetime="2025-06-18">\{localized(locale, "2025 年 6 月 18 日", "Jun 18, 2025", "2025年6月18日")}</time><h3><a href="https://www.moonbitlang.cn/about-us/">\{localized(locale, "MoonBit Beta 发布", "MoonBit Beta released", "MoonBit Beta をリリース")}</a></h3></li>
     $|        <li><time datetime="2026-02-09">\{localized(locale, "2026 年 2 月 9 日", "Feb 9, 2026", "2026年2月9日")}</time><h3><a href="https://www.moonbitlang.com/blog/moonbit-0-8-0-release">\{localized(locale, "MoonBit 0.8.0 发布", "MoonBit 0.8.0 released", "MoonBit 0.8.0 をリリース")}</a></h3></li>
     $|        <li><time datetime="2026-09-01">\{localized(locale, "2026 年 9 月 1 日", "Sep 1, 2026", "2026年9月1日")}</time><h3><a href="https://www.moonbitlang.com/blog/seekmoon-from-ide-to-ade">\{localized(locale, "SeekMoon 公开介绍 Agent 开发环境", "SeekMoon introduces its Agent Development Environment", "SeekMoon がエージェント開発環境を紹介")}</a></h3></li>
+    $|        <li><h3>\{localized(locale, "深圳月比特科技有限公司成立", "Yuebite Technology is founded in Shenzhen", "深圳月比特科技有限公司を設立")}</h3></li>
+    $|        <li><time datetime="2026-11-28">\{localized(locale, "2026 年 11 月 28 日 · 计划", "Nov 28, 2026 · Planned", "2026年11月28日・予定")}</time><h3>\{localized(locale, "MoonBit 1.0 发布 Meetup", "MoonBit 1.0 launch meetup", "MoonBit 1.0 発表ミートアップ")}</h3></li>
     #|      </ol>
     #|    </section>
     #|    <section class="shell section" aria-labelledby="careers">
     $|      <h2 id="careers">\{localized(locale, "加入我们", "Careers", "採用情報")}</h2>
-    $|      <p class="intro">\{localized(locale, "这里将发布开放岗位、岗位要求和申请方式。目前尚未发布招聘信息。", "Open roles, requirements, and application details will appear here. No vacancies are currently listed on this page.", "募集職種、応募要件、応募方法をこちらに掲載します。現在、このページに掲載中の求人はありません。")}</p>
+    #|      <article class="job">
+    $|        <h3>\{localized(locale, "开发者社区经营经理", "Developer Community Manager", "開発者コミュニティマネージャー")}</h3>
+    $|        <p>\{localized(locale, "一篇清晰的技术内容、一场有收获的活动、一次及时的交流，都可能成为开发者走近 MoonBit 的起点。我们期待你连接开源贡献者、高校与技术社区，帮助更多开发者了解 MoonBit、上手使用，并参与共建。", "Help developers discover, learn, and contribute to MoonBit through clear technical content, useful events, and timely conversations.", "技術コンテンツやイベント、日々の対話を通じて、開発者が MoonBit を知り、使い、開発に参加できるよう支援します。")}</p>
+    #|        <details>
+    $|          <summary>\{localized(locale, "查看完整岗位说明", "View full job description", "募集要項を見る")}</summary>
+    $|          <h4>\{localized(locale, "你将参与", "Responsibilities", "業務内容")}</h4>
+    $|          <ul><li>\{localized(locale, "开发者社群运营：连接开源贡献者、高校及技术社区，促进交流与共建。", "Connect open-source contributors, universities, and technical communities.", "オープンソース貢献者、大学、技術コミュニティをつなぐ。")}</li><li>\{localized(locale, "技术内容策划：帮助更多开发者了解、使用 MoonBit。", "Plan technical content that helps developers get started with MoonBit.", "MoonBit の理解と活用を促す技術コンテンツを企画する。")}</li><li>\{localized(locale, "社区活动执行：推进活动落地，为开发者创造交流与参与的机会。", "Run community events that bring developers together.", "開発者の交流や参加の機会となるイベントを運営する。")}</li></ul>
+    $|          <h4>\{localized(locale, "我们希望你有", "Qualifications", "応募要件")}</h4>
+    $|          <p>\{localized(locale, "有社区、内容或活动运营经验；对编程与开源感兴趣，愿意动手体验开发工具；擅长写作、沟通与项目执行。", "Experience in community, content, or event operations; interest in programming and open source; willingness to try developer tools; strong writing, communication, and execution skills.", "コミュニティ、コンテンツ、イベントのいずれかの運営経験。プログラミングやオープンソースへの関心、開発ツールを試す意欲、文章力・コミュニケーション力・実行力。")}</p>
+    $|          <p>\{localized(locale, "加分项：有开源社区、AI 编程工具或海外社区运营经验。", "A plus: experience with open-source communities, AI coding tools, or international community operations.", "歓迎要件：オープンソースコミュニティ、AI コーディングツール、海外コミュニティの運営経験。")}</p>
+    #|        </details>
+    #|      </article>
+    #|      <article class="job">
+    $|        <h3>\{localized(locale, "Agent 产品经理", "Agent Product Manager", "エージェントプロダクトマネージャー")}</h3>
+    $|        <p>\{localized(locale, "从应用搭建、工具制作到内容生成，Agent 产品需要理解用户想完成什么，组织合适的工具，并持续打磨从想法到成果交付的体验。我们期待你参与 MoonBit Agent 智能体产品建设。", "Build the MoonBit Agent product around what users want to accomplish, from creating apps and tools to generating content and delivering results.", "アプリ構築、ツール作成、コンテンツ生成など、ユーザーのアイデアを成果につなげる MoonBit Agent の体験をつくります。")}</p>
+    #|        <details>
+    $|          <summary>\{localized(locale, "查看完整岗位说明", "View full job description", "募集要項を見る")}</summary>
+    $|          <h4>\{localized(locale, "你将参与", "Responsibilities", "業務内容")}</h4>
+    $|          <ul><li>\{localized(locale, "Agent 产品建设：围绕应用搭建、工具制作与内容生成，打造从想法到成果交付的完整体验。", "Design end-to-end workflows for building apps and tools and generating content.", "アプリ構築、ツール作成、コンテンツ生成の一連の体験を設計する。")}</li><li>\{localized(locale, "工具集成与产品迭代：推动工具能力集成，持续完善产品体验。", "Integrate tools and improve the product through iteration.", "ツールの統合を進め、製品体験を継続的に改善する。")}</li><li>\{localized(locale, "商业化推进：兼顾用户价值与商业价值，推动产品商业化。", "Drive commercialization while balancing user and business value.", "ユーザー価値と事業価値を両立しながら事業化を進める。")}</li></ul>
+    $|          <h4>\{localized(locale, "我们希望你有", "Qualifications", "応募要件")}</h4>
+    $|          <p>\{localized(locale, "3 年以上产品或研发经验，具备开发者工具研发背景；理解 LLM、Agent、上下文管理与工具调用；深度使用过 Claude Code、Codex、Cursor 等产品；兼具用户洞察、产品判断与商业意识。", "At least three years in product or engineering, with a developer-tool engineering background. Understand LLMs, agents, context management, and tool calling. Have hands-on experience with tools like Claude Code, Codex, and Cursor, plus sound user, product, and business judgment.", "製品企画または開発の経験が3年以上あり、開発者向けツールの開発経験があること。LLM、エージェント、コンテキスト管理、ツール呼び出しを理解し、Claude Code、Codex、Cursor などを使い込んでいること。ユーザー理解、製品判断、事業感覚を備えていること。")}</p>
+    $|          <p>\{localized(locale, "加分项：有 Agent 产品从 0 到 1、MCP 生态或商业化经验。", "A plus: experience launching an agent product from scratch, working with the MCP ecosystem, or commercializing a product.", "歓迎要件：エージェント製品の立ち上げ、MCP エコシステム、事業化の経験。")}</p>
+    #|        </details>
+    #|      </article>
+    $|      <h3>\{localized(locale, "工作地点与薪酬福利", "Location, pay, and benefits", "勤務地・給与・福利厚生")}</h3>
+    $|      <ul><li>\{localized(locale, "深圳 · 线下办公", "Shenzhen · On-site", "深圳・オフィス勤務")}</li><li>\{localized(locale, "提供有竞争力的薪酬，优秀人才待遇可进一步商议。", "Competitive pay, with room to negotiate for exceptional candidates.", "競争力のある給与。経験や能力に応じて個別に相談できます。")}</li><li>\{localized(locale, "补充医疗、房补等福利。", "Supplemental medical coverage and a housing allowance.", "補足医療保険や住宅手当など。")}</li></ul>
     #|    </section>
     #|  </main>
   let contact_page =
@@ -204,7 +270,7 @@ fn main {
     $|    <nav class="footer-index" aria-label="\{localized(locale, "网站索引", "Site index", "サイトマップ")}">
     $|      <div><h2>\{localized(locale, "产品", "Products", "製品")}</h2><ul><li><a href="https://seekmoon.moonbitlang.com/cloud">SeekMoon Cloud ↗</a></li><li><a href="\{home_url}#feature-title">\{localized(locale, "最近动态", "Latest updates", "最新情報")}</a></li></ul></div>
     $|      <div><h2>\{localized(locale, "开发者", "Developers", "開発者")}</h2><ul><li><a href="\{developer_url}">\{localized(locale, "MoonBit 官网", "MoonBit website", "MoonBit 公式サイト")} ↗</a></li><li><a href="https://mooncakes.io/">\{localized(locale, "软件包与模块", "Packages and modules", "パッケージとモジュール")} ↗</a></li></ul></div>
-    $|      <div><h2>\{localized(locale, "开源生态", "Open source", "オープンソース")}</h2><ul><li><a href="\{home_url}#technology">\{localized(locale, "技术与生态", "Technology and ecosystem", "技術とエコシステム")}</a></li><li><a href="https://github.com/moonbit-community">\{localized(locale, "MoonBit 开源社区", "MoonBit open-source community", "MoonBit オープンソースコミュニティ")} ↗</a></li></ul></div>
+    $|      <div><h2>\{localized(locale, "开源生态", "Open source", "オープンソース")}</h2><ul><li><a href="./ecosystem\{suffix}.html">\{ecosystem_label(locale)}</a></li><li><a href="https://github.com/moonbit-community">\{localized(locale, "MoonBit 开源社区", "MoonBit open-source community", "MoonBit オープンソースコミュニティ")} ↗</a></li></ul></div>
     $|      <div><h2>\{localized(locale, "公司", "Company", "会社情報")}</h2><ul><li><a href="./company\{suffix}.html">\{localized(locale, "关于我们", "About us", "私たちについて")}</a></li><li><a href="./contact\{suffix}.html">\{localized(locale, "联系我们", "Contact us", "お問い合わせ")}</a></li></ul></div>
     $|      <div><h2>\{localized(locale, "更多", "More", "その他")}</h2><ul><li><a href="https://github.com/moonbit-community/yuebite-website">\{localized(locale, "官网源代码", "Website source code", "サイトのソースコード")} ↗</a></li></ul></div>
     #|    </nav>
@@ -223,6 +289,13 @@ fn main {
     #|  </footer>
     #|</body>
     #|</html>
-  let page = if contact { contact_page } else if company { about } else { home }
+  let page = match page_name {
+    "contact" => contact_page
+    "company" => about
+    "education" => education_page
+    "competitions" => competitions_page
+    "ecosystem" => ecosystem_page
+    _ => home
+  }
   println(header + "\n" + page + "\n" + footer)
 }
