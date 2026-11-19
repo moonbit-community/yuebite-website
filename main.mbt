@@ -16,7 +16,7 @@ fn ecosystem_cards() -> String {
     let (url, title, description) = link
     cards.write_string(
       (
-        $|<a href="\{url}"><strong>\{title} ↗</strong><span>\{description}</span></a>
+        $|<a href="\{url}"><strong>\{title}</strong><span>\{description}</span><span class="arrow" aria-hidden="true">↗</span></a>
       ),
     )
   }
@@ -38,24 +38,28 @@ fn main {
     #|</head>
     #|<body>
     #|  <header class="shell top">
-    #|    <a class="brand" href="#home">◐ 月比特科技</a>
+    #|    <a class="brand" href="#home"><span aria-hidden="true">◐</span> 月比特科技</a>
     #|    <nav aria-label="主导航"><a href="#technology">技术与生态</a><a href="#about">关于我们</a></nav>
+    #|    <a class="nav-action" href="https://www.moonbitlang.cn/">MoonBit ↗</a>
     #|  </header>
     #|  <main id="home">
     #|    <section class="hero shell" aria-labelledby="headline">
     #|      <div class="hero-text">
     #|        <p class="eyebrow">编程语言 · 开发工具 · 开源生态</p>
-    #|        <h1 id="headline">为开发者打造<br>趁手的工具<span>。</span></h1>
+    #|        <h1 id="headline">为开发者打造趁手的工具</h1>
     #|        <p class="intro">从 MoonBit 编程语言出发，探索如何让软件开发更简单。</p>
-    #|        <a class="button" href="#technology">探索技术与生态 →</a>
+    #|        <div class="actions"><a class="button" href="https://www.moonbitlang.cn/">了解 MoonBit ↗</a><a class="secondary" href="#technology">探索开源生态 ↓</a></div>
     #|      </div>
-    #|      <svg class="orbit" viewBox="0 0 480 480" aria-hidden="true">
-    #|        <defs><radialGradient id="moon" cx="30%" cy="22%" r="80%"><stop stop-color="#e9e5ff"/><stop offset=".52" stop-color="#8574ff"/><stop offset="1" stop-color="#201354"/></radialGradient></defs>
-    #|        <circle cx="240" cy="240" r="205" fill="none" stroke="#393258" stroke-dasharray="2 7"/>
-    #|        <circle cx="240" cy="240" r="142" fill="url(#moon)"/>
-    #|        <ellipse cx="240" cy="240" rx="224" ry="69" transform="rotate(-32 240 240)" fill="none" stroke="#b8acff"/>
-    #|        <circle cx="386" cy="101" r="8" fill="#d9d1ff"/>
+    #|    </section>
+    #|    <section class="feature shell" aria-labelledby="feature-title">
+    #|      <svg class="orbit" viewBox="0 0 1100 430" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    #|        <defs><radialGradient id="moon" cx="30%" cy="22%" r="80%"><stop stop-color="#f6eaff"/><stop offset=".52" stop-color="#a994ff"/><stop offset="1" stop-color="#322561"/></radialGradient></defs>
+    #|        <circle cx="728" cy="215" r="265" fill="none" stroke="#aea0de" stroke-opacity=".3"/>
+    #|        <circle cx="728" cy="215" r="178" fill="url(#moon)"/>
+    #|        <ellipse cx="728" cy="215" rx="285" ry="80" transform="rotate(-24 728 215)" fill="none" stroke="#e3d5ff"/>
+    #|        <circle cx="945" cy="95" r="7" fill="#f6eaff"/>
     #|      </svg>
+    #|      <div class="feature-copy"><p class="eyebrow">编程语言</p><h2 id="feature-title">探索 MoonBit</h2><a href="https://www.moonbitlang.cn/">访问 MoonBit 官网 ↗</a></div>
     #|    </section>
     #|    <section class="shell section" id="technology">
     #|      <p class="eyebrow">01 / TECHNOLOGY</p>
