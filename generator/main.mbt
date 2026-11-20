@@ -108,11 +108,11 @@ fn main {
     $|  <meta name="viewport" content="width=device-width, initial-scale=1">
     $|  <meta name="description" content="\{localized(locale, "月比特科技：了解 MoonBit 编程语言、开发工具与开源生态。", "Explore the MoonBit language, developer tools, and open-source ecosystem.", "MoonBit のプログラミング言語、開発ツール、オープンソースを紹介します。")}">
     $|  <title>\{title}</title>
-    $|  <link rel="stylesheet" href="./site.css?v=20261120-2">
+    $|  <link rel="stylesheet" href="./assets/site.css?v=20261120-2">
     $|</head>
     $|<body>
     $|  <header class="chrome-shell top">
-    $|    <a class="brand" href="\{home_url}"><img src="./moonbit-wordmark.png" alt="MoonBit" width="677" height="173"></a>
+    $|    <a class="brand" href="\{home_url}"><img src="./assets/moonbit-wordmark.png" alt="MoonBit" width="677" height="173"></a>
     $|    <div class="desktop-nav">\{navigation}</div>
     $|    <div class="nav-actions"><a href="./contact\{suffix}.html">\{localized(locale, "联系我们", "Contact us", "お問い合わせ")}</a><a class="nav-action" href="https://seekmoon.moonbitlang.com/">\{localized(locale, "试用 SeekMoon", "Try SeekMoon", "SeekMoon を試す")} ↗</a></div>
     $|    <details class="mobile-nav"><summary aria-label="\{localized(locale, "菜单", "Menu", "メニュー")}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></summary>\{navigation}</details>
@@ -132,11 +132,11 @@ fn main {
     $|        <fieldset><legend class="updates-visually-hidden">\{localized(locale, "切换文章", "Select an article", "記事を切り替える")}</legend><label><input type="radio" name="updates-slide" value="1" checked><span>01</span></label><label><input type="radio" name="updates-slide" value="2"><span>02</span></label></fieldset>
     $|      </div>
     $|      <article class="feature" data-slide="1">
-    $|      <img class="feature-logo" src="./news-carousel-downloads.jpg" alt="\{localized(locale, "MoonBit 累计下载突破 1060 万，月比特科技成立", "MoonBit reaches 10.6 million downloads; Yuebite Technology is founded", "MoonBit の累計ダウンロード数が1,060万を突破、月比特科技が設立")}">
+    $|      <img class="feature-logo" src="./assets/news-carousel-downloads.jpg" alt="\{localized(locale, "MoonBit 累计下载突破 1060 万，月比特科技成立", "MoonBit reaches 10.6 million downloads; Yuebite Technology is founded", "MoonBit の累計ダウンロード数が1,060万を突破、月比特科技が設立")}">
     $|      <div class="feature-copy"><h3>\{localized(locale, "MoonBit 累计下载突破 1060 万", "MoonBit passes 10.6 million downloads", "MoonBit の累計ダウンロード数が1,060万を突破")}</h3><a href="https://mp.weixin.qq.com/s/Sd7Zv89bSiz7aZOEEi_KMg">\{localized(locale, "阅读公众号文章", "Read the article in Chinese", "中国語の記事を読む")} ↗</a></div>
     $|      </article>
     $|      <article class="feature" data-slide="2">
-    $|        <img class="feature-logo" src="./news-carousel-meetup.jpg" alt="\{localized(locale, "MoonBit 1.0 发布 Meetup 暨黑客松季度决赛", "MoonBit 1.0 launch meetup and hackathon finals", "MoonBit 1.0 発表ミートアップとハッカソン決勝")}">
+    $|        <img class="feature-logo" src="./assets/news-carousel-meetup.jpg" alt="\{localized(locale, "MoonBit 1.0 发布 Meetup 暨黑客松季度决赛", "MoonBit 1.0 launch meetup and hackathon finals", "MoonBit 1.0 発表ミートアップとハッカソン決勝")}">
     $|        <div class="feature-copy"><h3>\{localized(locale, "MoonBit 1.0 发布 Meetup", "MoonBit 1.0 launch meetup", "MoonBit 1.0 発表ミートアップ")}</h3><a href="https://mp.weixin.qq.com/s/cnsj6Z1V9PCEKnb3wbSv0g">\{localized(locale, "阅读公众号文章", "Read the article in Chinese", "中国語の記事を読む")} ↗</a></div>
     $|      </article>
     $|    </section>
@@ -196,7 +196,7 @@ fn main {
     $|      <p>\{localized(locale, "了解 MoonBit 的线下聚会与开发者社区活动。", "Explore MoonBit meetups and developer community events.", "MoonBit のミートアップや開発者コミュニティのイベントをご紹介します。")}</p>
     $|      <div class="news-grid">
     $|        <article><a class="news-story" href="https://mp.weixin.qq.com/s/cnsj6Z1V9PCEKnb3wbSv0g">
-    $|          <img src="./news-moonbit-meetup.jpg" alt="">
+    $|          <img src="./assets/news-moonbit-meetup.jpg" alt="">
     $|          <h2>\{localized(locale, "MoonBit 1.0 发布 Meetup 暨黑客松季度决赛", "MoonBit 1.0 launch meetup and hackathon finals", "MoonBit 1.0 発表ミートアップとハッカソン決勝")}</h2>
     $|          <span class="news-arrow" aria-hidden="true">↗</span>
     $|          <p class="event-description">\{localized(locale, "一场围绕 MoonBit 1.0 发布与黑客松季度决赛的社区聚会。", "A community meetup for the MoonBit 1.0 launch and the quarterly hackathon finals.", "MoonBit 1.0 の発表とハッカソンの四半期決勝を行うコミュニティイベントです。")}</p>
@@ -210,13 +210,13 @@ fn main {
     $|      <p>\{localized(locale, "查看月比特科技的近期报道与活动消息。以下原文为中文。", "Read recent coverage and event announcements from Yuebite Technology. The articles are in Chinese.", "月比特科技の最近の記事やイベント情報をご覧ください。記事は中国語です。")}</p>
     $|      <div class="news-grid">
     $|        <article><a class="news-story" href="https://mp.weixin.qq.com/s/cnsj6Z1V9PCEKnb3wbSv0g">
-    $|          <img src="./news-moonbit-meetup.jpg" alt="">
+    $|          <img src="./assets/news-moonbit-meetup.jpg" alt="">
     $|          <p class="news-meta">\{localized(locale, "活动预告 · 微信公众号", "Event announcement · WeChat", "イベント告知・WeChat")}</p>
     $|          <h2>\{localized(locale, "MoonBit 1.0 发布 Meetup 暨黑客松季度决赛", "MoonBit 1.0 launch meetup and hackathon finals", "MoonBit 1.0 発表ミートアップとハッカソン決勝")}</h2>
     $|          <span class="news-arrow" aria-hidden="true">↗</span>
     $|        </a></article>
     $|        <article><a class="news-story" href="https://mp.weixin.qq.com/s/Sd7Zv89bSiz7aZOEEi_KMg">
-    $|          <img src="./news-moonbit-downloads.jpg" alt="">
+    $|          <img src="./assets/news-moonbit-downloads.jpg" alt="">
     $|          <p class="news-meta">\{localized(locale, "MoonBit 动态 · 微信公众号", "MoonBit news · WeChat", "MoonBit ニュース・WeChat")}</p>
     $|          <h2>\{localized(locale, "MoonBit 累计下载突破 1060 万", "MoonBit passes 10.6 million downloads", "MoonBit の累計ダウンロード数が1,060万を突破")}</h2>
     $|          <span class="news-arrow" aria-hidden="true">↗</span>
@@ -233,7 +233,7 @@ fn main {
     $|    <section class="shell section" aria-labelledby="team">
     $|      <h2 id="team">\{localized(locale, "团队介绍", "Our team", "チーム紹介")}</h2>
     $|      <article class="founder-profile">
-    $|        <img class="founder-photo" src="./founder-hongbo-zhang.png" alt="\{localized(locale, "张宏波", "Hongbo Zhang", "張宏波")}" width="533" height="800" loading="lazy">
+    $|        <img class="founder-photo" src="./assets/founder-hongbo-zhang.png" alt="\{localized(locale, "张宏波", "Hongbo Zhang", "張宏波")}" width="533" height="800" loading="lazy">
     $|        <div class="founder-copy">
     $|        <h3>\{localized(locale, "张宏波", "Hongbo Zhang", "張宏波（Hongbo Zhang）")}</h3>
     $|        <p class="founder-title">\{localized(locale, "月比特科技创始人", "Founder of Yuebite Technology", "月比特科技の創業者")}</p>
@@ -320,8 +320,8 @@ fn main {
     $|      <a href="https://github.com/moonbit-community" aria-label="\{localized(locale, "MoonBit 开源社区", "MoonBit open-source community", "MoonBit オープンソースコミュニティ")} GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.14.08 1.73 1.16 1.73 1.16 1 .73 1.79.84 3.26.53.1-.73.39-1.23.71-1.51-2.5-.29-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.29-.5-1.43.11-2.98 0 0 .95-.3 3.09 1.15a10.78 10.78 0 0 1 5.63 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.55.23 2.69.12 2.98.72.79 1.15 1.79 1.15 3.02 0 4.32-2.63 5.27-5.14 5.55.4.35.76 1.03.76 2.08v3.51c0 .3.2.65.77.54A11.25 11.25 0 0 0 12 .75Z"/></svg></a>
     $|      <div class="footer-wechat">
     $|        <button type="button" aria-label="\{localized(locale, "微信公众号二维码", "WeChat QR code", "WeChat のQRコード")}" popovertarget="footer-wechat-code"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 5C7 1 1 5 2 10c0 2 1 3 2 4l-1 3 4-2h2m7-7c-4 0-7 3-7 6s3 6 7 6l2-.3 3 1.3-.5-3c1-1 1.5-2 1.5-4 0-3-2.7-6-6-6Z"/><path d="M6 8h1m3 0h1m2 5h1m3 0h1"/></svg></button>
-    $|        <figure class="footer-wechat-preview" aria-hidden="true"><img src="./wechat-yuebite.png" alt="" width="148" height="148"><figcaption>\{brand}</figcaption></figure>
-    $|        <figure class="footer-wechat-popover" id="footer-wechat-code" popover><img src="./wechat-yuebite.png" alt="\{localized(locale, "微信公众号二维码", "WeChat QR code", "WeChat のQRコード")}" width="148" height="148"><figcaption>\{brand}</figcaption></figure>
+    $|        <figure class="footer-wechat-preview" aria-hidden="true"><img src="./assets/wechat-yuebite.png" alt="" width="148" height="148"><figcaption>\{brand}</figcaption></figure>
+    $|        <figure class="footer-wechat-popover" id="footer-wechat-code" popover><img src="./assets/wechat-yuebite.png" alt="\{localized(locale, "微信公众号二维码", "WeChat QR code", "WeChat のQRコード")}" width="148" height="148"><figcaption>\{brand}</figcaption></figure>
     $|      </div>
     $|      <a href="https://discord.gg/FyXNY8cpyJ" aria-label="MoonBit Discord" title="Discord"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.3 4.4a19 19 0 0 0-4.7-1.5l-.6 1.2a17 17 0 0 0-6 0l-.6-1.2a19 19 0 0 0-4.7 1.5A20 20 0 0 0 .2 17.8a19 19 0 0 0 5.8 3l1.2-2a12 12 0 0 1-1.8-.9l.4-.3a15 15 0 0 0 12.4 0l.4.3a12 12 0 0 1-1.8.9l1.2 2a19 19 0 0 0 5.8-3 20 20 0 0 0-3.5-13.4ZM8.1 15.4c-1.2 0-2.1-1.1-2.1-2.4s.9-2.4 2.1-2.4 2.1 1.1 2.1 2.4-.9 2.4-2.1 2.4Zm7.8 0c-1.2 0-2.1-1.1-2.1-2.4s.9-2.4 2.1-2.4 2.1 1.1 2.1 2.4-.9 2.4-2.1 2.4Z"/></svg></a>
     $|      <a href="https://www.xiaohongshu.com/user/profile/636b072f000000001f01c84a" aria-label="\{localized(locale, "小红书", "RedNote", "小紅書")}" title="\{localized(locale, "小红书", "RedNote", "小紅書")}"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="5" fill="currentColor"/><text x="12" y="15" text-anchor="middle" font-size="7" font-weight="700" fill="white">\{localized(locale, "小红书", "RedNote", "小紅書")}</text></svg></a>

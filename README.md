@@ -11,7 +11,7 @@ moon check --target js
 moon run --target native build-site.mbtx
 ```
 
-Serve `_site/` with a local static file server to preview the site. The build generates Chinese, English, and Japanese versions of each page. Use the footer to switch languages on the current page. The build copies the contents of `assets/` into `_site/` and preserves the directory structure.
+Serve `_site/` with a local static file server to preview the site. The build generates Chinese, English, and Japanese versions of each page. Use the footer to switch languages on the current page. The build copies the `assets/` directory to `_site/assets/` and preserves its directory structure.
 
 ## Deployment
 

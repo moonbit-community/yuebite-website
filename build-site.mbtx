@@ -61,5 +61,5 @@ async fn main {
     }
   }
 
-  copy_assets("assets", output_dir)
+  copy_assets("assets", "\{output_dir}/assets")
 }
