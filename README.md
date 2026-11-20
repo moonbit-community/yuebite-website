@@ -1,6 +1,6 @@
 # Yuebite Technology Website
 
-This repository contains the official Yuebite Technology website. MoonBit generates static HTML from `generator/main.mbt` during the build. Stylesheets and images live in `assets/`.
+This repository contains the official Yuebite Technology website. MoonBit generates static HTML from `generator/main.mbt` during the build. Stylesheets and images live in `assets/`. The homepage news carousel uses a small browser script to rotate stories automatically; manual selection still works without JavaScript.
 
 ## Local Preview
 

@@ -1,5 +1,10 @@
 ///|
-fn localized(locale : String, chinese : String, english : String, japanese : String) -> String {
+fn localized(
+  locale : String,
+  chinese : String,
+  english : String,
+  japanese : String,
+) -> String {
   match locale {
     "en" => english
     "ja" => japanese
@@ -9,7 +14,9 @@ fn localized(locale : String, chinese : String, english : String, japanese : Str
 
 ///|
 fn moonbit_site(locale : String) -> String {
-  localized(locale, "https://www.moonbitlang.cn/", "https://www.moonbitlang.com/", "https://www.moonbitlang.com/")
+  localized(
+    locale, "https://www.moonbitlang.cn/", "https://www.moonbitlang.com/", "https://www.moonbitlang.com/",
+  )
 }
 
 ///|
@@ -34,13 +41,30 @@ fn ecosystem_cards(locale : String) -> String {
   let developer_url = moonbit_site(locale)
   let links = [
     (
-      developer_url, "MoonBit", localized(locale, "了解编程语言、开发工具与入门文档。", "Explore the language, developer tools, and getting-started guides.", "言語、開発ツール、入門ガイドを見る。"),
+      developer_url,
+      "MoonBit",
+      localized(
+        locale, "了解编程语言、开发工具与入门文档。", "Explore the language, developer tools, and getting-started guides.",
+        "言語、開発ツール、入門ガイドを見る。",
+      ),
     ),
     (
-      "https://mooncakes.io/", "Mooncakes", localized(locale, "浏览 MoonBit 软件包与开源模块。", "Browse MoonBit packages and open-source modules.", "MoonBit のパッケージとオープンソースモジュールを見る。"),
+      "https://mooncakes.io/",
+      "Mooncakes",
+      localized(
+        locale, "浏览 MoonBit 软件包与开源模块。", "Browse MoonBit packages and open-source modules.",
+        "MoonBit のパッケージとオープンソースモジュールを見る。",
+      ),
     ),
     (
-      "https://github.com/moonbit-community", localized(locale, "开源社区", "Open-source community", "オープンソースコミュニティ"), localized(locale, "查看社区项目，参与开源协作。", "Explore community projects and contribute.", "コミュニティのプロジェクトを探し、開発に参加する。"),
+      "https://github.com/moonbit-community",
+      localized(
+        locale, "开源社区", "Open-source community", "オープンソースコミュニティ",
+      ),
+      localized(
+        locale, "查看社区项目，参与开源协作。", "Explore community projects and contribute.",
+        "コミュニティのプロジェクトを探し、開発に参加する。",
+      ),
     ),
   ]
   let cards = StringBuilder()
@@ -54,7 +78,88 @@ fn ecosystem_cards(locale : String) -> String {
 
 ///|
 fn ecosystem_label(locale : String) -> String {
-  localized(locale, "MoonBit 生态", "MoonBit ecosystem", "MoonBit エコシステム")
+  localized(
+    locale, "MoonBit 生态", "MoonBit ecosystem", "MoonBit エコシステム",
+  )
+}
+
+///|
+fn home_updates(
+  locale : String,
+  news_url : String,
+  news_label : String,
+) -> String {
+  let stories = [
+    (
+      localized(locale, "公司动态", "Company news", "会社ニュース"),
+      localized(
+        locale, "MoonBit 累计下载突破 1060 万", "MoonBit passes 10.6 million downloads",
+        "MoonBit の累計ダウンロード数が1,060万を突破",
+      ),
+      "https://mp.weixin.qq.com/s/Sd7Zv89bSiz7aZOEEi_KMg",
+      "./assets/news-carousel-downloads.jpg",
+    ),
+    (
+      localized(
+        locale, "社区活动", "Community event", "コミュニティイベント",
+      ),
+      localized(
+        locale, "MoonBit 1.0 发布 Meetup 暨黑客松季度决赛", "MoonBit 1.0 launch meetup and hackathon finals",
+        "MoonBit 1.0 発表ミートアップとハッカソン決勝",
+      ),
+      "https://mp.weixin.qq.com/s/cnsj6Z1V9PCEKnb3wbSv0g",
+      "./assets/news-carousel-meetup.jpg",
+    ),
+  ]
+  let features = StringBuilder()
+  let choices = StringBuilder()
+  for index in 0..<stories.length() {
+    let (category, headline, story_url, cover_url) = stories[index]
+    let number = index + 1
+    let current = if index == 0 { " checked" } else { "" }
+    features.write_string(
+      (
+        $|        <article class="updates-feature" data-slide="\{number}">
+        $|          <a href="\{story_url}">
+        $|            <p class="updates-category">\{category} <span>· \{localized(locale, "微信公众号", "WeChat (Chinese)", "WeChat（中国語）")}</span></p>
+        $|            <h3>\{headline}<span aria-hidden="true">↗</span></h3>
+        $|            <img src="\{cover_url}" width="1200" height="1000" alt="" loading="lazy" decoding="async">
+        $|          </a>
+        $|        </article>
+      ),
+    )
+    choices.write_string(
+      (
+        $|        <label class="updates-choice">
+        $|          <input type="radio" name="updates-slide" value="\{number}"\{current}>
+        $|          <span class="updates-choice-body">
+        $|            <span class="updates-choice-number" aria-hidden="true">0\{number}</span>
+        $|            <span class="updates-choice-copy"><span class="updates-category">\{category}</span><span>\{headline}</span></span>
+        $|            <span class="updates-choice-mark" aria-hidden="true"></span>
+        $|          </span>
+        $|        </label>
+      ),
+    )
+  }
+  let stories_html = features.to_string()
+  let choices_html = choices.to_string()
+  (
+    $|    <section class="home-updates shell" id="feature-title" aria-labelledby="updates-title">
+    $|      <div class="updates-header">
+    $|        <h2 id="updates-title">\{news_label}</h2>
+    $|        <a href="\{news_url}">\{localized(locale, "全部动态", "All updates", "すべての最新情報")} <span aria-hidden="true">→</span></a>
+    $|      </div>
+    $|      <div class="updates-layout">
+    $|        <div class="updates-stage">
+    $|          \{stories_html}
+    $|        </div>
+    $|        <fieldset class="updates-choices">
+    $|          <legend class="updates-visually-hidden">\{localized(locale, "切换焦点报道", "Select a featured story", "注目の記事を切り替える")}</legend>
+    $|          \{choices_html}
+    $|        </fieldset>
+    $|      </div>
+    $|    </section>
+  )
 }
 
 ///|
@@ -62,21 +167,75 @@ fn main {
   let args = @env.args()
   let company = args.contains("--company")
   let contact = args.contains("--contact")
-  let locale = if args.contains("--en") { "en" } else if args.contains("--ja") { "ja" } else { "zh-CN" }
+  let locale = if args.contains("--en") {
+    "en"
+  } else if args.contains("--ja") {
+    "ja"
+  } else {
+    "zh-CN"
+  }
   let suffix = if locale == "zh-CN" { "" } else { "-\{locale}" }
-  let page_name = if contact { "contact" } else if company { "company" } else if args.contains("--education") { "education" } else if args.contains("--competitions") { "competitions" } else if args.contains("--events") { "events" } else if args.contains("--ecosystem") { "ecosystem" } else if args.contains("--news") { "news" } else { "index" }
+  let page_name = if contact {
+    "contact"
+  } else if company {
+    "company"
+  } else if args.contains("--education") {
+    "education"
+  } else if args.contains("--competitions") {
+    "competitions"
+  } else if args.contains("--events") {
+    "events"
+  } else if args.contains("--ecosystem") {
+    "ecosystem"
+  } else if args.contains("--news") {
+    "news"
+  } else {
+    "index"
+  }
   let home_url = if suffix == "" { "./" } else { "./index\{suffix}.html" }
-  let brand = localized(locale, "月比特科技", "Yuebite Technology", "月比特科技")
-  let about_label = localized(locale, "关于我们", "About us", "私たちについて")
-  let contact_label = localized(locale, "联系我们", "Contact us", "お問い合わせ")
-  let language_label = localized(locale, "MoonBit 编程语言", "MoonBit Programming Language", "MoonBit プログラミング言語")
-  let ecosystem_nav_label = localized(locale, "生态", "Ecosystem", "エコシステム")
+  let brand = localized(
+    locale, "月比特科技", "Yuebite Technology", "月比特科技",
+  )
+  let product_name = "MoonBit 365"
+  let product_url = "https://seekmoon.moonbitlang.com/"
+  let product_label = localized(
+    locale,
+    "\{product_name} 智能体",
+    "\{product_name} Agent",
+    "\{product_name} エージェント",
+  )
+  let product_trial_label = localized(
+    locale,
+    "试用 \{product_name}",
+    "Try \{product_name}",
+    "\{product_name} を試す",
+  )
+  let about_label = localized(
+    locale, "关于我们", "About us", "私たちについて",
+  )
+  let contact_label = localized(
+    locale, "联系我们", "Contact us", "お問い合わせ",
+  )
+  let language_label = localized(
+    locale, "MoonBit 编程语言", "MoonBit Programming Language", "MoonBit プログラミング言語",
+  )
+  let ecosystem_nav_label = localized(
+    locale, "生态", "Ecosystem", "エコシステム",
+  )
   let education_label = localized(locale, "教育", "Education", "教育")
-  let competitions_label = localized(locale, "赛事", "Competitions", "コンテスト")
+  let competitions_label = localized(
+    locale, "赛事", "Competitions", "コンテスト",
+  )
   let events_label = localized(locale, "活动", "Events", "イベント")
-  let news_label = localized(locale, "最新动态", "Latest updates", "最新情報")
+  let news_label = localized(
+    locale, "最新动态", "Latest updates", "最新情報",
+  )
   let news_url = "./news\{suffix}.html"
-  let news_current = if page_name == "news" { " aria-current=\"page\"" } else { "" }
+  let news_current = if page_name == "news" {
+    " aria-current=\"page\""
+  } else {
+    ""
+  }
   let title = match page_name {
     "news" => "\{news_label} | \{brand}"
     "contact" => "\{contact_label} | \{brand}"
@@ -93,7 +252,7 @@ fn main {
   let cards = ecosystem_cards(locale)
   let navigation =
     $|    <nav aria-label="\{localized(locale, "主导航", "Main navigation", "メインナビゲーション")}">
-    $|      <a href="https://seekmoon.moonbitlang.com/">\{localized(locale, "SeekMoon 智能体", "SeekMoon Agent", "SeekMoon エージェント")}</a>
+    $|      <a href="\{product_url}">\{product_label}</a>
     $|      <a href="\{developer_url}">\{language_label}</a>
     $|      <details class="ecosystem-nav"><summary>\{ecosystem_nav_label}</summary><div class="ecosystem-menu"><a href="https://mooncakes.io/">Mooncakes ↗</a><a href="./education\{suffix}.html">\{education_label}</a><a href="./competitions\{suffix}.html">\{competitions_label}</a><a href="./events\{suffix}.html">\{events_label}</a></div></details>
     $|      <a href="\{news_url}"\{news_current}>\{news_label}</a>
@@ -108,38 +267,61 @@ fn main {
     $|  <meta name="viewport" content="width=device-width, initial-scale=1">
     $|  <meta name="description" content="\{localized(locale, "月比特科技：了解 MoonBit 编程语言、开发工具与开源生态。", "Explore the MoonBit language, developer tools, and open-source ecosystem.", "MoonBit のプログラミング言語、開発ツール、オープンソースを紹介します。")}">
     $|  <title>\{title}</title>
-    $|  <link rel="stylesheet" href="./assets/site.css?v=20261120-2">
+    $|  <link rel="stylesheet" href="./assets/site.css?v=20261120-4">
     $|</head>
     $|<body>
     $|  <header class="chrome-shell top">
     $|    <a class="brand" href="\{home_url}"><img src="./assets/moonbit-wordmark.png" alt="MoonBit" width="677" height="173"></a>
     $|    <div class="desktop-nav">\{navigation}</div>
-    $|    <div class="nav-actions"><a href="./contact\{suffix}.html">\{localized(locale, "联系我们", "Contact us", "お問い合わせ")}</a><a class="nav-action" href="https://seekmoon.moonbitlang.com/">\{localized(locale, "试用 SeekMoon", "Try SeekMoon", "SeekMoon を試す")} ↗</a></div>
+    $|    <div class="nav-actions"><a href="./contact\{suffix}.html">\{localized(locale, "联系我们", "Contact us", "お問い合わせ")}</a><a class="nav-action" href="\{product_url}">\{product_trial_label} ↗</a></div>
     $|    <details class="mobile-nav"><summary aria-label="\{localized(locale, "菜单", "Menu", "メニュー")}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></summary>\{navigation}</details>
     $|  </header>
+  let updates = home_updates(locale, news_url, news_label)
   let home =
     $|  <main id="home">
-    $|    <section class="hero shell" aria-labelledby="headline">
-    $|      <div class="hero-text">
-    $|        <h1 id="headline">\{brand}</h1>
-    $|        <p class="hero-intro">\{localized(locale, "我们打造 MoonBit 编程语言和 SeekMoon 智能体，希望让软件创作不再是少数人的专长，让更多人把想象变成改变世界的作品。", "We build the MoonBit programming language and the SeekMoon agent with a vision: a world where more people can create software and turn their ideas into things that change the world.", "私たちはプログラミング言語 MoonBit と AI エージェント SeekMoon を開発し、より多くの人がソフトウェアをつくり、想像を世界を変える作品へと形にできる未来を目指します。")}</p>
-    $|        <a class="prompt" href="https://seekmoon.moonbitlang.com/"><span>\{localized(locale, "用 SeekMoon，把想法变成项目", "Turn your ideas into projects with SeekMoon", "SeekMoon でアイデアをプロジェクトに")}</span><span class="prompt-action">\{localized(locale, "试用 SeekMoon", "Try SeekMoon", "SeekMoon を試す")} <span aria-hidden="true">↗</span></span></a>
-    $|        <div class="actions"><a class="secondary" href="\{developer_url}">MoonBit</a><a class="secondary" href="https://mooncakes.io/">Mooncakes</a><a class="secondary" href="./ecosystem\{suffix}.html">\{localized(locale, "开源生态", "Open source", "オープンソース")}</a><a class="secondary" href="./company\{suffix}.html">\{localized(locale, "关于我们", "About us", "私たちについて")}</a></div>
+    $|    <section class="home-hero" aria-labelledby="headline">
+    $|      <svg class="home-orbits" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+    $|        <defs>
+    $|          <pattern id="home-star-grid" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#9a88a8"/></pattern>
+    $|          <linearGradient id="home-orbit-ink" x1="0%" y1="100%" x2="100%" y2="0%"><stop stop-color="#b37fe0"/><stop offset=".5" stop-color="#c5add8"/><stop offset="1" stop-color="#e7a0c5"/></linearGradient>
+    $|        </defs>
+    $|        <rect width="1440" height="800" fill="url(#home-star-grid)" opacity=".35"/>
+    $|        <g class="home-orbit-motion">
+    $|          <g transform="translate(720 400) rotate(-16)" fill="none" stroke="url(#home-orbit-ink)" stroke-width="1.2">
+    $|            <ellipse rx="650" ry="182" opacity=".6"/>
+    $|            <ellipse rx="700" ry="210" stroke-dasharray="1 6" stroke-linecap="round"/>
+    $|            <ellipse rx="750" ry="238" opacity=".65"/>
+    $|            <ellipse rx="805" ry="267" opacity=".55"/>
+    $|            <ellipse rx="858" ry="296" stroke-dasharray="1 7" stroke-linecap="round"/>
+    $|            <ellipse rx="916" ry="326" opacity=".45"/>
+    $|            <circle cx="-520" cy="171" r="10" fill="#eae0f6"/><circle cx="-520" cy="171" r="4" fill="#9760c5" stroke="none"/>
+    $|            <circle cx="492" cy="-171" r="8" fill="#f5e2ef"/><circle cx="492" cy="-171" r="3" fill="#bf6397" stroke="none"/>
+    $|            <circle cx="282" cy="253" r="4" fill="#ae84ce" stroke="none"/>
+    $|          </g>
+    $|        </g>
+    $|      </svg>
+    $|      <div class="shell home-hero-copy">
+    $|        <p class="home-kicker">\{brand}</p>
+    $|        <h1 id="headline">\{localized(locale, "让更多人创造软件", "Software creation for everyone.", "ソフトウェアづくりを、もっと身近に")}</h1>
+    $|        <p class="home-hero-intro">\{localized(locale, "我们打造 MoonBit 编程语言和 \{product_name} 智能体，帮助更多人把想法变成真正可用的软件。", "We build the MoonBit programming language and the \{product_name} agent to help more people turn their ideas into working software.", "プログラミング言語 MoonBit と \{product_name} エージェントで、より多くの人がアイデアを使えるソフトウェアにできるよう支援します。")}</p>
+    $|        <div class="home-actions">
+    $|          <a class="home-button home-button-primary" href="\{product_url}">\{product_trial_label} <span aria-hidden="true">↗</span></a>
+    $|          <a class="home-button" href="\{developer_url}">\{localized(locale, "了解 MoonBit", "Explore MoonBit", "MoonBit を知る")} <span aria-hidden="true">↗</span></a>
+    $|          <a class="home-button" href="./company\{suffix}.html">\{about_label} <span aria-hidden="true">→</span></a>
+    $|        </div>
+    $|        <section class="home-product" id="home-product" aria-labelledby="home-product-title">
+    $|          <a class="home-product-link" href="\{product_url}">
+    $|            <div>
+    $|              <p class="home-product-name">\{product_label}</p>
+    $|              <h2 id="home-product-title">\{localized(locale, "把想法变成项目", "Turn your ideas into projects", "アイデアをプロジェクトに")}</h2>
+    $|            </div>
+    $|            <span class="home-product-action">\{localized(locale, "打开工作台", "Open workspace", "ワークスペースを開く")} <span aria-hidden="true">↗</span></span>
+    $|          </a>
+    $|        </section>
     $|      </div>
+    $|      <a class="home-scroll" href="#feature-title" aria-label="\{localized(locale, "查看最新动态", "View latest updates", "最新情報を見る")}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
     $|    </section>
-    $|    <section class="updates shell" id="feature-title" aria-labelledby="updates-title">
-    $|      <div class="updates-controls"><h2 id="updates-title">\{localized(locale, "最近动态", "Latest updates", "最新情報")}</h2>
-    $|        <fieldset><legend class="updates-visually-hidden">\{localized(locale, "切换文章", "Select an article", "記事を切り替える")}</legend><label><input type="radio" name="updates-slide" value="1" checked><span>01</span></label><label><input type="radio" name="updates-slide" value="2"><span>02</span></label></fieldset>
-    $|      </div>
-    $|      <article class="feature" data-slide="1">
-    $|      <img class="feature-logo" src="./assets/news-carousel-downloads.jpg" alt="\{localized(locale, "MoonBit 累计下载突破 1060 万，月比特科技成立", "MoonBit reaches 10.6 million downloads; Yuebite Technology is founded", "MoonBit の累計ダウンロード数が1,060万を突破、月比特科技が設立")}">
-    $|      <div class="feature-copy"><h3>\{localized(locale, "MoonBit 累计下载突破 1060 万", "MoonBit passes 10.6 million downloads", "MoonBit の累計ダウンロード数が1,060万を突破")}</h3><a href="https://mp.weixin.qq.com/s/Sd7Zv89bSiz7aZOEEi_KMg">\{localized(locale, "阅读公众号文章", "Read the article in Chinese", "中国語の記事を読む")} ↗</a></div>
-    $|      </article>
-    $|      <article class="feature" data-slide="2">
-    $|        <img class="feature-logo" src="./assets/news-carousel-meetup.jpg" alt="\{localized(locale, "MoonBit 1.0 发布 Meetup 暨黑客松季度决赛", "MoonBit 1.0 launch meetup and hackathon finals", "MoonBit 1.0 発表ミートアップとハッカソン決勝")}">
-    $|        <div class="feature-copy"><h3>\{localized(locale, "MoonBit 1.0 发布 Meetup", "MoonBit 1.0 launch meetup", "MoonBit 1.0 発表ミートアップ")}</h3><a href="https://mp.weixin.qq.com/s/cnsj6Z1V9PCEKnb3wbSv0g">\{localized(locale, "阅读公众号文章", "Read the article in Chinese", "中国語の記事を読む")} ↗</a></div>
-    $|      </article>
-    $|    </section>
+    $|\{updates}
     $|    <script>
     $|      {
     $|        const updates = document.getElementById('feature-title');
@@ -152,10 +334,6 @@ fn main {
     $|        }, 6000);
     $|      }
     $|    </script>
-    $|    <section class="shell seekmoon-cta" aria-labelledby="seekmoon-cta-title">
-    $|      <h2 id="seekmoon-cta-title">\{localized(locale, "开始使用 SeekMoon", "Get started with SeekMoon", "SeekMoon を始める")}</h2>
-    $|      <a href="https://seekmoon.moonbitlang.com/">\{localized(locale, "打开云端工作台", "Open the cloud workspace", "クラウドワークスペースを開く")} <span aria-hidden="true">↗</span></a>
-    $|    </section>
     $|  </main>
   let ecosystem_page =
     $|  <main id="home">
@@ -292,7 +470,7 @@ fn main {
     $|    <div class="shell contact-layout">
     $|      <section aria-labelledby="contact-title">
     $|        <h1 id="contact-title" class="eyebrow">\{contact_label}</h1>
-    $|        <p>\{localized(locale, "想了解如何在团队中使用 MoonBit 或 SeekMoon？欢迎就产品试用、技术交流与合作联系我们。", "Interested in using MoonBit or SeekMoon with your team? Get in touch about trials, technical questions, or partnerships.", "チームで MoonBit や SeekMoon を使ってみませんか。試用、技術相談、協業についてお気軽にお問い合わせください。")}</p>
+    $|        <p>\{localized(locale, "想了解如何在团队中使用 MoonBit 或 \{product_name}？欢迎就产品试用、技术交流与合作联系我们。", "Interested in using MoonBit or \{product_name} with your team? Get in touch about trials, technical questions, or partnerships.", "チームで MoonBit や \{product_name} を使ってみませんか。試用、技術相談、協業についてお気軽にお問い合わせください。")}</p>
     $|      </section>
     $|      <section class="contact-card" aria-labelledby="contact-card-title">
     $|        <h2 id="contact-card-title">\{localized(locale, "开始交流", "Get in touch", "ご相談窓口")}</h2>
@@ -305,7 +483,7 @@ fn main {
     $|  </main>
   let footer_index =
     $|    <nav class="footer-index" aria-label="\{localized(locale, "网站索引", "Site index", "サイトマップ")}">
-    $|      <div><h2>\{localized(locale, "SeekMoon 智能体", "SeekMoon Agent", "SeekMoon エージェント")}</h2><ul><li><a href="https://seekmoon.moonbitlang.com/">SeekMoon Cloud ↗</a></li></ul></div>
+    $|      <div><h2>\{product_label}</h2><ul><li><a href="\{product_url}">\{product_name} Cloud ↗</a></li></ul></div>
     $|      <div><h2>\{language_label}</h2><ul><li><a href="\{developer_url}">\{localized(locale, "MoonBit 官网", "MoonBit website", "MoonBit 公式サイト")} ↗</a></li></ul></div>
     $|      <div><h2>\{ecosystem_nav_label}</h2><ul><li><a href="https://mooncakes.io/">Mooncakes ↗</a></li><li><a href="./education\{suffix}.html">\{education_label}</a></li><li><a href="./competitions\{suffix}.html">\{competitions_label}</a></li><li><a href="./events\{suffix}.html">\{events_label}</a></li><li><a href="./ecosystem\{suffix}.html">\{ecosystem_label(locale)}</a></li></ul></div>
     $|      <div><h2><a href="\{news_url}">\{news_label}</a></h2></div>

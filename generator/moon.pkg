@@ -2,6 +2,4 @@ import {
   "moonbitlang/core/env",
 }
 
-options(
-  "is-main": true,
-)
+pkgtype(kind: "executable")
