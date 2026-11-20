@@ -97,6 +97,15 @@ fn main {
   let language_links = language_options(locale, page_name)
   let developer_url = moonbit_site(locale)
   let cards = ecosystem_cards(locale)
+  let navigation =
+    $|    <nav aria-label="\{localized(locale, "主导航", "Main navigation", "メインナビゲーション")}">
+    $|      <a href="https://seekmoon.moonbitlang.com/">\{localized(locale, "SeekMoon 智能体", "SeekMoon Agent", "SeekMoon エージェント")}</a>
+    $|      <a href="\{developer_url}">\{language_label}</a>
+    $|      <details class="ecosystem-nav"><summary>\{ecosystem_nav_label}</summary><div class="ecosystem-menu"><a href="https://mooncakes.io/">Mooncakes ↗</a><a href="./education\{suffix}.html">\{education_label}</a><a href="./competitions\{suffix}.html">\{competitions_label}</a><a href="./events\{suffix}.html">\{events_label}</a></div></details>
+    $|      <a href="\{news_url}"\{news_current}>\{news_label}</a>
+    $|      <a href="./company\{suffix}.html"\{company_current}>\{about_label}</a>
+    $|      <a class="mobile-contact" href="./contact\{suffix}.html">\{contact_label}</a>
+    #|    </nav>
   let header =
     #|<!doctype html>
     $|<html lang="\{locale}">
@@ -105,19 +114,14 @@ fn main {
     #|  <meta name="viewport" content="width=device-width, initial-scale=1">
     $|  <meta name="description" content="\{localized(locale, "月比特科技：了解 MoonBit 编程语言、开发工具与开源生态。", "Explore the MoonBit language, developer tools, and open-source ecosystem.", "MoonBit のプログラミング言語、開発ツール、オープンソースを紹介します。")}">
     $|  <title>\{title}</title>
-    #|  <link rel="stylesheet" href="./site.css?v=20261120-1">
+    #|  <link rel="stylesheet" href="./site.css?v=20261120-2">
     #|</head>
     #|<body>
     #|  <header class="chrome-shell top">
     $|    <a class="brand" href="\{home_url}"><img src="./moonbit-wordmark.png" alt="MoonBit" width="677" height="173"></a>
-    $|    <nav aria-label="\{localized(locale, "主导航", "Main navigation", "メインナビゲーション")}">
-    $|      <a href="https://seekmoon.moonbitlang.com/">\{localized(locale, "SeekMoon 智能体", "SeekMoon Agent", "SeekMoon エージェント")}</a>
-    $|      <a href="\{developer_url}">\{language_label}</a>
-    $|      <details class="ecosystem-nav"><summary>\{ecosystem_nav_label}</summary><div class="ecosystem-menu"><a href="https://mooncakes.io/">Mooncakes ↗</a><a href="./education\{suffix}.html">\{education_label}</a><a href="./competitions\{suffix}.html">\{competitions_label}</a><a href="./events\{suffix}.html">\{events_label}</a></div></details>
-    $|      <a href="\{news_url}"\{news_current}>\{news_label}</a>
-    $|      <a href="./company\{suffix}.html"\{company_current}>\{about_label}</a>
-    #|    </nav>
+    $|    <div class="desktop-nav">\{navigation}</div>
     $|    <div class="nav-actions"><a href="./contact\{suffix}.html">\{localized(locale, "联系我们", "Contact us", "お問い合わせ")}</a><a class="nav-action" href="https://seekmoon.moonbitlang.com/">\{localized(locale, "试用 SeekMoon", "Try SeekMoon", "SeekMoon を試す")} ↗</a></div>
+    $|    <details class="mobile-nav"><summary aria-label="\{localized(locale, "菜单", "Menu", "メニュー")}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></summary>\{navigation}</details>
     #|  </header>
   let home =
     #|  <main id="home">
@@ -135,11 +139,11 @@ fn main {
     #|      </div>
     #|      <article class="feature" data-slide="1">
     $|      <img class="feature-logo" src="./news-carousel-downloads.jpg" alt="\{localized(locale, "MoonBit 累计下载突破 1060 万，月比特科技成立", "MoonBit reaches 10.6 million downloads; Yuebite Technology is founded", "MoonBit の累計ダウンロード数が1,060万を突破、月比特科技が設立")}">
-    $|      <div class="feature-copy"><p class="eyebrow">\{localized(locale, "微信公众号", "WeChat Official Account", "WeChat 公式アカウント")}</p><h3>\{localized(locale, "MoonBit 累计下载突破 1060 万", "MoonBit passes 10.6 million downloads", "MoonBit の累計ダウンロード数が1,060万を突破")}</h3><a href="https://mp.weixin.qq.com/s/Sd7Zv89bSiz7aZOEEi_KMg">\{localized(locale, "阅读公众号文章", "Read the article in Chinese", "中国語の記事を読む")} ↗</a></div>
+    $|      <div class="feature-copy"><h3>\{localized(locale, "MoonBit 累计下载突破 1060 万", "MoonBit passes 10.6 million downloads", "MoonBit の累計ダウンロード数が1,060万を突破")}</h3><a href="https://mp.weixin.qq.com/s/Sd7Zv89bSiz7aZOEEi_KMg">\{localized(locale, "阅读公众号文章", "Read the article in Chinese", "中国語の記事を読む")} ↗</a></div>
     #|      </article>
     #|      <article class="feature" data-slide="2">
     $|        <img class="feature-logo" src="./news-carousel-meetup.jpg" alt="\{localized(locale, "MoonBit 1.0 发布 Meetup 暨黑客松季度决赛", "MoonBit 1.0 launch meetup and hackathon finals", "MoonBit 1.0 発表ミートアップとハッカソン決勝")}">
-    $|        <div class="feature-copy"><p class="eyebrow">\{localized(locale, "微信公众号", "WeChat Official Account", "WeChat 公式アカウント")}</p><h3>\{localized(locale, "MoonBit 1.0 发布 Meetup", "MoonBit 1.0 launch meetup", "MoonBit 1.0 発表ミートアップ")}</h3><a href="https://mp.weixin.qq.com/s/cnsj6Z1V9PCEKnb3wbSv0g">\{localized(locale, "阅读公众号文章", "Read the article in Chinese", "中国語の記事を読む")} ↗</a></div>
+    $|        <div class="feature-copy"><h3>\{localized(locale, "MoonBit 1.0 发布 Meetup", "MoonBit 1.0 launch meetup", "MoonBit 1.0 発表ミートアップ")}</h3><a href="https://mp.weixin.qq.com/s/cnsj6Z1V9PCEKnb3wbSv0g">\{localized(locale, "阅读公众号文章", "Read the article in Chinese", "中国語の記事を読む")} ↗</a></div>
     #|      </article>
     #|    </section>
     #|    <script>
@@ -305,8 +309,7 @@ fn main {
     #|      </section>
     #|    </div>
     #|  </main>
-  let footer =
-    #|  <footer class="chrome-shell">
+  let footer_index =
     $|    <nav class="footer-index" aria-label="\{localized(locale, "网站索引", "Site index", "サイトマップ")}">
     $|      <div><h2>\{localized(locale, "SeekMoon 智能体", "SeekMoon Agent", "SeekMoon エージェント")}</h2><ul><li><a href="https://seekmoon.moonbitlang.com/">SeekMoon Cloud ↗</a></li></ul></div>
     $|      <div><h2>\{language_label}</h2><ul><li><a href="\{developer_url}">\{localized(locale, "MoonBit 官网", "MoonBit website", "MoonBit 公式サイト")} ↗</a></li></ul></div>
@@ -314,6 +317,10 @@ fn main {
     $|      <div><h2><a href="\{news_url}">\{news_label}</a></h2></div>
     $|      <div><h2><a href="./company\{suffix}.html">\{about_label}</a></h2><ul><li><a href="./contact\{suffix}.html">\{contact_label}</a></li><li><a href="https://github.com/moonbit-community/yuebite-website">\{localized(locale, "官网源代码", "Website source code", "サイトのソースコード")} ↗</a></li></ul></div>
     #|    </nav>
+  let footer =
+    #|  <footer class="chrome-shell">
+    $|    <div class="desktop-nav">\{footer_index}</div>
+    $|    <details class="mobile-footer-index"><summary>\{localized(locale, "网站索引", "Site index", "サイトマップ")}</summary>\{footer_index}</details>
     #|    <div class="footer">
     $|    <nav class="footer-links" aria-label="\{localized(locale, "社区链接", "Community links", "コミュニティリンク")}">
     $|      <a href="https://github.com/moonbit-community" aria-label="\{localized(locale, "MoonBit 开源社区", "MoonBit open-source community", "MoonBit オープンソースコミュニティ")} GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.13.68-3.79-1.33-3.79-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.02-.7.08-.68.08-.68 1.14.08 1.73 1.16 1.73 1.16 1 .73 1.79.84 3.26.53.1-.73.39-1.23.71-1.51-2.5-.29-5.13-1.25-5.13-5.56 0-1.23.44-2.23 1.16-3.02-.12-.29-.5-1.43.11-2.98 0 0 .95-.3 3.09 1.15a10.78 10.78 0 0 1 5.63 0c2.14-1.45 3.08-1.15 3.08-1.15.61 1.55.23 2.69.12 2.98.72.79 1.15 1.79 1.15 3.02 0 4.32-2.63 5.27-5.14 5.55.4.35.76 1.03.76 2.08v3.51c0 .3.2.65.77.54A11.25 11.25 0 0 0 12 .75Z"/></svg></a>
