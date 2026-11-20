@@ -21,13 +21,10 @@ fn language_name(locale : String) -> String {
 fn language_options(locale : String, page_name : String) -> String {
   let links = StringBuilder()
   for choice in ["zh-CN", "en", "ja"] {
-    let suffix = if choice == "zh-CN" { "" } else { "-" + choice }
+    let suffix = if choice == "zh-CN" { "" } else { "-\{choice}" }
     let current = if choice == locale { " aria-current=\"page\"" } else { "" }
-    links.write_string(
-      (
-        $|<a href="./\{page_name}\{suffix}.html" lang="\{choice}" hreflang="\{choice}"\{current}>\{language_name(choice)}</a>
-      ),
-    )
+    links <+
+      $|<a href="./\{page_name}\{suffix}.html" lang="\{choice}" hreflang="\{choice}"\{current}>\{language_name(choice)}</a>
   }
   links.to_string()
 }
@@ -49,11 +46,8 @@ fn ecosystem_cards(locale : String) -> String {
   let cards = StringBuilder()
   for link in links {
     let (url, title, description) = link
-    cards.write_string(
-      (
-        $|<a href="\{url}"><strong>\{title}</strong><span>\{description}</span><span class="arrow" aria-hidden="true">↗</span></a>
-      ),
-    )
+    cards <+
+      $|<a href="\{url}"><strong>\{title}</strong><span>\{description}</span><span class="arrow" aria-hidden="true">↗</span></a>
   }
   cards.to_string()
 }
@@ -69,9 +63,9 @@ fn main {
   let company = args.contains("--company")
   let contact = args.contains("--contact")
   let locale = if args.contains("--en") { "en" } else if args.contains("--ja") { "ja" } else { "zh-CN" }
-  let suffix = if locale == "zh-CN" { "" } else { "-" + locale }
+  let suffix = if locale == "zh-CN" { "" } else { "-\{locale}" }
   let page_name = if contact { "contact" } else if company { "company" } else if args.contains("--education") { "education" } else if args.contains("--competitions") { "competitions" } else if args.contains("--events") { "events" } else if args.contains("--ecosystem") { "ecosystem" } else if args.contains("--news") { "news" } else { "index" }
-  let home_url = if suffix == "" { "./" } else { "./index" + suffix + ".html" }
+  let home_url = if suffix == "" { "./" } else { "./index\{suffix}.html" }
   let brand = localized(locale, "月比特科技", "Yuebite Technology", "月比特科技")
   let about_label = localized(locale, "关于我们", "About us", "私たちについて")
   let contact_label = localized(locale, "联系我们", "Contact us", "お問い合わせ")
@@ -81,16 +75,16 @@ fn main {
   let competitions_label = localized(locale, "赛事", "Competitions", "コンテスト")
   let events_label = localized(locale, "活动", "Events", "イベント")
   let news_label = localized(locale, "最新动态", "Latest updates", "最新情報")
-  let news_url = "./news" + suffix + ".html"
+  let news_url = "./news\{suffix}.html"
   let news_current = if page_name == "news" { " aria-current=\"page\"" } else { "" }
   let title = match page_name {
-    "news" => news_label + " | " + brand
-    "contact" => contact_label + " | " + brand
-    "company" => about_label + " | " + brand
-    "education" => education_label + " | " + brand
-    "competitions" => competitions_label + " | " + brand
-    "events" => events_label + " | " + brand
-    "ecosystem" => ecosystem_label(locale) + " | " + brand
+    "news" => "\{news_label} | \{brand}"
+    "contact" => "\{contact_label} | \{brand}"
+    "company" => "\{about_label} | \{brand}"
+    "education" => "\{education_label} | \{brand}"
+    "competitions" => "\{competitions_label} | \{brand}"
+    "events" => "\{events_label} | \{brand}"
+    "ecosystem" => "\{ecosystem_label(locale)} | \{brand}"
     _ => brand
   }
   let company_current = if company { " aria-current=\"page\"" } else { "" }
@@ -350,5 +344,5 @@ fn main {
     "ecosystem" => ecosystem_page
     _ => home
   }
-  println(header + "\n" + page + "\n" + footer)
+  println("\{header}\n\{page}\n\{footer}")
 }
