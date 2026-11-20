@@ -1,20 +1,22 @@
-# 月比特科技官网
+# Yuebite Technology Website
 
-中文企业官网。构建时，MoonBit 从 `generator/main.mbt` 生成静态 HTML。样式和图片放在 `assets/`。
+This repository contains the official Yuebite Technology website. MoonBit generates static HTML from `generator/main.mbt` during the build. Stylesheets and images live in `assets/`.
 
-## 本地预览
+## Local Preview
 
-安装 MoonBit 工具链、Node.js、Git 和 C 编译器后，首次构建前运行 `moon update` 初始化包索引。然后在仓库根目录运行以下命令。
+Install the MoonBit toolchain, Node.js, Git, and a C compiler. Before your first build, run `moon update` to initialize the package index. Then run the following commands from the repository root.
 
 ```sh
 moon check --target js
 moon run --target native build-site.mbtx
 ```
 
-通过本地静态服务器预览 `_site/`。构建会生成各页面的中文、英文和日文版本，页脚可切换同一页面的语言。构建会把 `assets/` 的内容复制到 `_site/`，并保留其中的目录结构。
+Serve `_site/` with a local static file server to preview the site. The build generates Chinese, English, and Japanese versions of each page. Use the footer to switch languages on the current page. The build copies the contents of `assets/` into `_site/` and preserves the directory structure.
 
-## 发布
+## Deployment
 
-将文件提交并推送至仓库的 `main` 分支。在 GitHub 仓库的 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**。如首次推送的部署未成功，在 **Actions** 中手动运行 **Deploy website to GitHub Pages**。
+Commit your changes and push them to the `main` branch. In the GitHub repository, select **GitHub Actions** under **Settings → Pages → Build and deployment → Source**. If the first push fails to deploy, run **Deploy website to GitHub Pages** manually from the **Actions** tab.
 
-默认项目站点地址为 `https://moonbit-community.github.io/yuebite-website/`；以 Pages 设置中显示的实际地址为准。上线前请确认公司介绍及导航链接，正式 Logo、联系方式等可在资料确认后补充。
+Check the Pages settings for the site's configured URL. The default is the [project's GitHub Pages URL](https://moonbit-community.github.io/yuebite-website/).
+
+Before launch, review the company description and navigation links. You can add the official logo and contact details once they are confirmed.
