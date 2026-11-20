@@ -1,17 +1,17 @@
 # 月比特科技官网
 
-中文企业官网。页面源码在 `main.mbt`，由 MoonBit 构建时生成静态 HTML；样式在 `site.css`。浏览器不需要运行 JavaScript。
+中文企业官网。构建时，MoonBit 从 `generator/main.mbt` 生成静态 HTML。样式和图片放在 `assets/`。
 
 ## 本地预览
 
-安装 MoonBit 工具链和 Node.js 后，在仓库根目录运行：
+安装 MoonBit 工具链、Node.js、Git 和 C 编译器后，首次构建前运行 `moon update` 初始化包索引。然后在仓库根目录运行以下命令。
 
 ```sh
 moon check --target js
-sh build-site.sh
+moon run --target native build-site.mbtx
 ```
 
-通过本地静态服务器预览 `_site/`。构建生成首页、关于我们和联系我们的中文、英文和日文版本；页脚可切换同一页面的语言。修改 `main.mbt` 或 `site.css` 后重新执行上述命令。
+通过本地静态服务器预览 `_site/`。构建会生成各页面的中文、英文和日文版本，页脚可切换同一页面的语言。构建会把 `assets/` 的内容复制到 `_site/`，并保留其中的目录结构。
 
 ## 发布
 

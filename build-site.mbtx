@@ -1,0 +1,65 @@
+----
+import {
+  "moonbitlang/async@0.22.9",
+  "moonbitlang/async@0.22.9/fs",
+  "moonbitlang/async@0.22.9/process",
+}
+----
+
+///|
+suberror SiteBuildError {
+  PageRenderFailed(String, Int32)
+}
+
+///|
+impl Show for SiteBuildError with fn output(self, logger) {
+  let PageRenderFailed(path, exit_code) = self
+  logger <+ "Failed to generate \{path} (exit code \{exit_code})"
+}
+
+///|
+async fn copy_assets(source : String, destination : String) -> Unit {
+  @fs.walk(source, max_concurrency=1, (directory, entries) => {
+    let relative_path = directory.strip_prefix(source).unwrap_or("")
+    let output_dir = "\{destination}\{relative_path}"
+    @fs.mkdir(output_dir, recursive=true, allow_exist=true)
+    for name in entries {
+      let input_path = "\{directory}/\{name}"
+      if @fs.kind(input_path) is Regular {
+        @fs.write_file("\{output_dir}/\{name}", @fs.read_file(input_path))
+      }
+    }
+  })
+}
+
+///|
+async fn main {
+  let output_dir = "_site"
+  @fs.mkdir(output_dir, allow_exist=true)
+
+  let locales = ["zh-CN", "en", "ja"]
+  let pages = [
+    "index", "company", "contact", "ecosystem", "education", "competitions", "events",
+    "news",
+  ]
+  for locale in locales {
+    let suffix = if locale == "zh-CN" { "" } else { "-\{locale}" }
+    for page in pages {
+      let args = ["run", "./generator", "--target", "js", "--release", "--"]
+      if locale != "zh-CN" {
+        args.push("--\{locale}")
+      }
+      if page != "index" {
+        args.push("--\{page}")
+      }
+      let output_path = "\{output_dir}/\{page}\{suffix}.html"
+      let (exit_code, html) = @process.collect_stdout("moon", args)
+      guard exit_code == 0 else {
+        raise PageRenderFailed(output_path, exit_code)
+      }
+      @fs.write_file(output_path, html)
+    }
+  }
+
+  copy_assets("assets", output_dir)
+}

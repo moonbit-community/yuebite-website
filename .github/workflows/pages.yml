@@ -25,8 +25,9 @@ jobs:
           echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
       - name: Build site with MoonBit
         run: |
+          moon update
           moon check --target js
-          sh build-site.sh
+          moon run --target native build-site.mbtx
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
