@@ -105,7 +105,7 @@ fn main {
     #|  <meta name="viewport" content="width=device-width, initial-scale=1">
     $|  <meta name="description" content="\{localized(locale, "月比特科技：了解 MoonBit 编程语言、开发工具与开源生态。", "Explore the MoonBit language, developer tools, and open-source ecosystem.", "MoonBit のプログラミング言語、開発ツール、オープンソースを紹介します。")}">
     $|  <title>\{title}</title>
-    #|  <link rel="stylesheet" href="./site.css?v=20261119-8">
+    #|  <link rel="stylesheet" href="./site.css?v=20261120-1">
     #|</head>
     #|<body>
     #|  <header class="chrome-shell top">
@@ -248,14 +248,14 @@ fn main {
     #|    <section class="shell section" aria-labelledby="roadmap">
     $|      <h2 id="roadmap">\{localized(locale, "公司发展路线图", "Company roadmap", "会社のロードマップ")}</h2>
     $|      <p>\{localized(locale, "MoonBit 与月比特科技的发展里程碑。", "Milestones for MoonBit and Yuebite Technology.", "MoonBit と月比特科技の歩み。")}</p>
-    #|      <div class="roadmap-scroll" role="region" aria-labelledby="roadmap" tabindex="0"><ol class="roadmap-list">
+    #|      <ol class="roadmap-list" role="list">
     $|        <li><time datetime="2022-09">\{localized(locale, "2022 年 9 月", "Sep 2022", "2022年9月")}</time><h3><a href="https://www.moonbitlang.cn/blog/moonbit-third-anniversary">\{localized(locale, "MoonBit 项目正式立项", "MoonBit project begins", "MoonBit プロジェクトが正式に始動")}</a></h3></li>
     $|        <li><time datetime="2023-08">\{localized(locale, "2023 年 8 月", "Aug 2023", "2023年8月")}</time><h3><a href="https://www.moonbitlang.com/blog/first-announce">\{localized(locale, "MoonBit 首次公开发布", "MoonBit first public release", "MoonBit を初公開")}</a></h3></li>
     $|        <li><time datetime="2025-06">\{localized(locale, "2025 年 6 月", "Jun 2025", "2025年6月")}</time><h3><a href="https://www.moonbitlang.cn/about-us/">\{localized(locale, "MoonBit Beta 发布", "MoonBit Beta released", "MoonBit Beta をリリース")}</a></h3></li>
     $|        <li><time datetime="2026-02">\{localized(locale, "2026 年 2 月", "Feb 2026", "2026年2月")}</time><h3><a href="https://www.moonbitlang.com/blog/moonbit-0-8-0-release">\{localized(locale, "MoonBit 0.8.0 发布", "MoonBit 0.8.0 released", "MoonBit 0.8.0 をリリース")}</a></h3></li>
     $|        <li><h3>\{localized(locale, "深圳月比特科技有限公司成立", "Yuebite Technology is founded in Shenzhen", "深圳月比特科技有限公司を設立")}</h3></li>
     $|        <li><time datetime="2026-11">\{localized(locale, "2026 年 11 月 · 计划", "Nov 2026 · Planned", "2026年11月・予定")}</time><h3>\{localized(locale, "MoonBit 1.0 发布 Meetup", "MoonBit 1.0 launch meetup", "MoonBit 1.0 発表ミートアップ")}</h3></li>
-    #|      </ol></div>
+    #|      </ol>
     #|    </section>
     #|    <section class="shell section" aria-labelledby="careers">
     $|      <h2 id="careers">\{localized(locale, "加入我们", "Careers", "採用情報")}</h2>
@@ -270,6 +270,7 @@ fn main {
     $|          <p>\{localized(locale, "有社区、内容或活动运营经验；对编程与开源感兴趣，愿意动手体验开发工具；擅长写作、沟通与项目执行。", "Experience in community, content, or event operations; interest in programming and open source; willingness to try developer tools; strong writing, communication, and execution skills.", "コミュニティ、コンテンツ、イベントのいずれかの運営経験。プログラミングやオープンソースへの関心、開発ツールを試す意欲、文章力・コミュニケーション力・実行力。")}</p>
     $|          <p>\{localized(locale, "加分项：有开源社区、AI 编程工具或海外社区运营经验。", "A plus: experience with open-source communities, AI coding tools, or international community operations.", "歓迎要件：オープンソースコミュニティ、AI コーディングツール、海外コミュニティの運営経験。")}</p>
     #|        </details>
+    $|        <a class="secondary" href="https://m.zhipin.com/mpa/html/weijd/weijd-job/1293df3be8a5abb20nx_39m-EFJQ?date8=20261110&amp;sid=tosee_jd_31a7d83e868b63c81Hx-39y_GVo~&amp;openWeapp=1&amp;fromSource=2">\{localized(locale, "去 BOSS 直聘投递", "Apply on BOSS Zhipin", "BOSS直聘で応募する")} →</a>
     #|      </article>
     #|      <article class="job">
     $|        <h3>\{localized(locale, "Agent 产品经理", "Agent Product Manager", "エージェントプロダクトマネージャー")}</h3>
@@ -282,6 +283,7 @@ fn main {
     $|          <p>\{localized(locale, "3 年以上产品或研发经验，具备开发者工具研发背景；理解 LLM、Agent、上下文管理与工具调用；深度使用过 Claude Code、Codex、Cursor 等产品；兼具用户洞察、产品判断与商业意识。", "At least three years in product or engineering, with a developer-tool engineering background. Understand LLMs, agents, context management, and tool calling. Have hands-on experience with tools like Claude Code, Codex, and Cursor, plus sound user, product, and business judgment.", "製品企画または開発の経験が3年以上あり、開発者向けツールの開発経験があること。LLM、エージェント、コンテキスト管理、ツール呼び出しを理解し、Claude Code、Codex、Cursor などを使い込んでいること。ユーザー理解、製品判断、事業感覚を備えていること。")}</p>
     $|          <p>\{localized(locale, "加分项：有 Agent 产品从 0 到 1、MCP 生态或商业化经验。", "A plus: experience launching an agent product from scratch, working with the MCP ecosystem, or commercializing a product.", "歓迎要件：エージェント製品の立ち上げ、MCP エコシステム、事業化の経験。")}</p>
     #|        </details>
+    $|        <a class="secondary" href="https://m.zhipin.com/mpa/html/weijd/weijd-job/9afa82af0fb42f7e0nx_39m7FVFT?date8=20261110&amp;sid=tosee_jd_31a7d83e868b63c81Hx-39y_GVo~&amp;openWeapp=1&amp;fromSource=2&amp;_security_check=1_1795141545227">\{localized(locale, "去 BOSS 直聘投递", "Apply on BOSS Zhipin", "BOSS直聘で応募する")} →</a>
     #|      </article>
     $|      <h3>\{localized(locale, "工作地点与薪酬福利", "Location, pay, and benefits", "勤務地・給与・福利厚生")}</h3>
     $|      <ul><li>\{localized(locale, "深圳 · 线下办公", "Shenzhen · On-site", "深圳・オフィス勤務")}</li><li>\{localized(locale, "提供有竞争力的薪酬，优秀人才待遇可进一步商议。", "Competitive pay, with room to negotiate for exceptional candidates.", "競争力のある給与。経験や能力に応じて個別に相談できます。")}</li><li>\{localized(locale, "补充医疗、房补等福利。", "Supplemental medical coverage and a housing allowance.", "補足医療保険や住宅手当など。")}</li></ul>
